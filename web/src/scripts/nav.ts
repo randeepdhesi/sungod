@@ -59,6 +59,7 @@ function initMobileMenu(header: HTMLElement) {
 
   const setOpen = (open: boolean) => {
     button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
     panel.hidden = !open;
     if (label) label.textContent = open ? 'Close' : 'Menu';
     outside.forEach((el) => {
