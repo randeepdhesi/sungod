@@ -16,7 +16,7 @@ export function initBrandReview(root: HTMLElement) {
   const applySiteBtn = root.querySelector<HTMLButtonElement>('[data-apply-site-logo]');
 
   const conceptNames: Record<string, string> = {
-    A: 'Horizon',
+    A: 'Solstice',
     B: 'Slatted Sun',
     C: 'Fine-line Radiant'
   };

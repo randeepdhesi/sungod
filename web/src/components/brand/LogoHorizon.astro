@@ -1,72 +1,16 @@
 ---
+import LogoSolstice from './LogoSolstice.astro';
 import type { LogoTone, LogoVariant } from '../../data/enums';
-import { taperedRay } from '../../lib/logo-geometry';
 
 interface Props {
   variant?: LogoVariant;
   tone?: LogoTone;
-  /** Base unit in px; mark and type scale from it */
   size?: number;
   class?: string;
   title?: string;
 }
 
-const {
-  variant = 'full',
-  tone = 'light',
-  size = 20,
-  class: cls,
-  title = 'Sungod Blinds logo concept A: Horizon'
-} = Astro.props;
-
-const CX = 60;
-const CY = 50;
-const rays = [157.5, 135, 112.5, 90, 67.5, 45, 22.5].map((deg, i) =>
-  taperedRay(CX, CY, deg, 25, i % 2 === 1 ? 40 : 33, 1.8)
-);
-
-const ink = tone === 'dark' ? 'var(--color-lace)' : 'var(--color-graphite)';
-const markH = variant === 'full' ? size * 3.2 : variant === 'compact' ? size * 1.5 : size;
-const markW = (markH * 120) / 66;
-const gap = variant === 'compact' ? size * 0.6 : size * 0.9;
+const props = Astro.props;
 ---
 
-<div
-  role="img"
-  aria-label={title}
-  class:list={['inline-flex', variant === 'full' ? 'flex-col items-center' : 'items-center', cls]}
-  style={`color:${ink};gap:${gap}px`}
->
-  <svg viewBox="0 0 120 66" width={markW} height={markH} aria-hidden="true" focusable="false">
-    <g fill="var(--color-honey)">
-      {rays.map((points) => <polygon points={points} />)}
-      <path d="M40 50 A20 20 0 0 1 80 50 Z" />
-      <rect x="32" y="60" width="56" height="1.2" rx="0.6" opacity="0.4" />
-    </g>
-    <g fill="currentColor">
-      <rect x="4" y="51.2" width="112" height="3.6" rx="1.8" />
-      <rect x="2" y="49.2" width="5" height="7.6" rx="1.2" />
-      <rect x="113" y="49.2" width="5" height="7.6" rx="1.2" />
-    </g>
-  </svg>
-  {
-    variant !== 'mark' && (
-      <span aria-hidden="true" class:list={['flex flex-col', variant === 'full' ? 'items-center' : 'items-start']}>
-        <span
-          class="font-display leading-none"
-          style={`font-size:${variant === 'full' ? size * 1.9 : size * 1.15}px;letter-spacing:0.32em;padding-left:${variant === 'full' ? '0.32em' : '0'}`}
-        >
-          SUNGOD
-        </span>
-        {variant === 'full' && (
-          <span
-            class="font-sans font-medium leading-none opacity-80"
-            style={`font-size:${size * 0.5}px;letter-spacing:0.38em;padding-left:0.38em;margin-top:${size * 0.6}px`}
-          >
-            MOTORIZED BLINDS
-          </span>
-        )}
-      </span>
-    )
-  }
-</div>
+<LogoSolstice {...props} />

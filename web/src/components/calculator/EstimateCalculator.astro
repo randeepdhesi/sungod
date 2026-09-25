@@ -87,7 +87,7 @@ const { initialProduct = 'motorized-roller-shades', class: cls } = Astro.props;
   <div class="grid gap-8 lg:grid-cols-2">
     <!-- Window Dimensions -->
     <div class="rounded-card border border-line bg-paper p-6 sm:p-7">
-      <div class="flex items-baseline justify-between">
+      <div class="flex flex-wrap items-baseline justify-between gap-1">
         <span class="text-[12px] font-semibold tracking-[0.08em] text-mist uppercase">02 / Approximate Dimensions</span>
         <span class="text-[12px] text-mist">Laser-measured to ±1/16" by our in-house crew</span>
       </div>
@@ -185,7 +185,7 @@ const { initialProduct = 'motorized-roller-shades', class: cls } = Astro.props;
     <!-- Window Count & Package -->
     <div class="flex flex-col justify-between rounded-card border border-line bg-paper p-6 sm:p-7">
       <div>
-        <div class="flex items-baseline justify-between">
+        <div class="flex flex-wrap items-baseline justify-between gap-1">
           <span class="text-[12px] font-semibold tracking-[0.08em] text-mist uppercase">03 / Window Count</span>
           <span class="text-[12px] text-mist">Multi-window volume discount</span>
         </div>
@@ -323,7 +323,7 @@ const { initialProduct = 'motorized-roller-shades', class: cls } = Astro.props;
       <div>
         <span class="text-[12px] font-semibold tracking-[0.1em] text-mist uppercase">Estimated Ballpark Investment</span>
         <div class="mt-2 flex flex-wrap items-baseline gap-3">
-          <span data-calc-total-range class="font-display text-[clamp(2.5rem,5vw,4.25rem)] leading-none text-graphite">
+          <span data-calc-total-range class="font-display text-[clamp(1.75rem,6.5vw,3.75rem)] leading-tight text-graphite break-words">
             $1,420 – $1,680 CAD
           </span>
         </div>

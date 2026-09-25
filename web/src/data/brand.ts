@@ -10,9 +10,9 @@ export const logoConcepts: LogoConcept[] = [
   },
   {
     id: 'A',
-    name: 'Horizon',
+    name: 'Solstice',
     rationale:
-      "A rising sun resting on a shade's bottom rail. Sunrise meets the blind: the name and the product in one mark.",
+      'A precision geometric solar compass with a central honey sun disc, calibrated directional rays, and fine hairline orbit. Balanced and architectural.',
     component: 'horizon'
   },
   {

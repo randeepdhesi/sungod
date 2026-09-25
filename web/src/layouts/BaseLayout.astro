@@ -65,7 +65,7 @@ const jsonLd = {
     </script>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body class="min-h-screen bg-lace font-sans text-graphite antialiased">
+  <body class="min-h-screen bg-lace font-sans text-graphite antialiased overflow-x-hidden w-full max-w-[100vw]">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-btn focus:bg-graphite focus:px-4 focus:py-2 focus:text-lace"
@@ -73,7 +73,7 @@ const jsonLd = {
       Skip to content
     </a>
     <SiteHeader />
-    <main id="main" class="pt-20">
+    <main id="main" class="pt-20 overflow-x-hidden w-full max-w-full">
       <slot />
     </main>
     <SiteFooter />

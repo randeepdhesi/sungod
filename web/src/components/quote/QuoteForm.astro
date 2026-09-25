@@ -22,7 +22,7 @@ import TextareaField from '../ui/TextareaField.astro';
       <TextareaField name="notes" label="Tell us about your space" placeholder="Rooms, window sizes, anything you'd like us to know." />
 
       <!-- Honeypot: leave empty -->
-      <div class="absolute -left-[9999px]" aria-hidden="true">
+      <div class="sr-only" aria-hidden="true">
         <label for="field-company">Company</label>
         <input id="field-company" name="company" type="text" tabindex="-1" autocomplete="off" />
       </div>
