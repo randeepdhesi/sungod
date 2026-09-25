@@ -14,6 +14,9 @@ importers:
       '@fontsource/forum':
         specifier: ^5.3.0
         version: 5.3.0
+      '@fontsource/inter':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource/raleway':
         specifier: ^5.3.0
         version: 5.3.0
@@ -430,6 +433,9 @@ packages:
 
   '@fontsource/forum@5.3.0':
     resolution: {integrity: sha512-wZmonoit7JhG5usRNScbeNBzqnqijKD7Kzv6pRBXklVdwsADNarLG/5K6+XoCMx3JyBAwg52TxO+dretsomNrQ==}
+
+  '@fontsource/inter@5.3.0':
+    resolution: {integrity: sha512-RofMylZmjlJEfELXeNHFWBRcSs75rGU/6bV2S2jfnvv/3rPXPGe0LgUJTklcHZ9lM4OZmAVFhcJPnACfb91A3g==}
 
   '@fontsource/raleway@5.3.0':
     resolution: {integrity: sha512-BTWr1I14Ji0DWpS/KCIq/CXcvxXWgMO73gynWpbYv7A5wlPhLevozgRmdPJvZmUf0fhH+Lju+F4nigJ6Ums24A==}
@@ -2340,6 +2346,8 @@ snapshots:
     optional: true
 
   '@fontsource/forum@5.3.0': {}
+
+  '@fontsource/inter@5.3.0': {}
 
   '@fontsource/raleway@5.3.0': {}
 

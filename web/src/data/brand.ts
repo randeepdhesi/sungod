@@ -25,10 +25,10 @@ export const logoConcepts: LogoConcept[] = [
 ];
 
 export const palette: PaletteSwatch[] = [
-  { name: 'Old Lace', hex: '#F7EFDE', token: 'lace', role: 'Page' },
-  { name: 'Warm Band', hex: '#E5E2D9', token: 'band', role: 'Section band' },
-  { name: 'Graphite', hex: '#303236', token: 'graphite', role: 'Text' },
-  { name: 'Rusty Spice', hex: '#A94D25', token: 'spice', role: 'Action' },
-  { name: 'Honey Bronze', hex: '#D9A545', token: 'honey', role: 'Sun' },
-  { name: 'Golden Chestnut', hex: '#C57C37', token: 'chestnut', role: 'Warm wash' }
+  { name: 'Architectural White', hex: '#FAF8F5', token: 'lace', role: 'Page Background' },
+  { name: 'Warm Grey Band', hex: '#EEEBE3', token: 'band', role: 'Section Separation' },
+  { name: 'Obsidian Charcoal', hex: '#121316', token: 'graphite', role: 'Headlines & Solid Text' },
+  { name: 'Deep Slate', hex: '#2A2B30', token: 'mist', role: 'Readable Body & Details' },
+  { name: 'Rusty Spice', hex: '#A94D25', token: 'spice', role: 'Action & CTAs' },
+  { name: 'Honey Bronze', hex: '#C89332', token: 'honey', role: 'Sun & Badges' }
 ];
