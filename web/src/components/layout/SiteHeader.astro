@@ -15,16 +15,9 @@ const onProducts = path.startsWith('/products');
   data-site-header
   class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-lace data-scrolled:border-line data-scrolled:bg-paper"
 >
-  <Container size="wide" class="flex h-20 items-center justify-between gap-2 sm:gap-6">
-    <!-- Mobile left spacer to balance hamburger button and achieve clean centering -->
-    <div class="mobile-header-spacer w-11 shrink-0 lg:hidden" aria-hidden="true"></div>
-
-    <a
-      href="/"
-      aria-label="Sungod Blinds home"
-      class="flex flex-1 items-center justify-center text-graphite lg:flex-initial lg:justify-start"
-    >
-      <SiteWordmark class="scale-115 sm:scale-125 lg:scale-100 transition-transform origin-center lg:origin-left" />
+  <Container size="wide" class="flex h-20 items-center justify-between gap-6">
+    <a href="/" aria-label="Sungod Blinds home" class="flex items-center text-graphite">
+      <SiteWordmark class="scale-110 sm:scale-120 lg:scale-100 transition-transform origin-left" />
     </a>
 
     <nav aria-label="Primary" class="hidden lg:block">
@@ -103,43 +96,49 @@ const onProducts = path.startsWith('/products');
     </div>
   </Container>
 
-  <div id="mobile-nav" hidden class="fixed inset-x-0 bottom-0 top-20 overflow-y-auto border-t border-line bg-lace lg:hidden">
-    <Container class="py-8">
-      <nav aria-label="Mobile">
-        <p class="text-[13px] font-medium text-mist">Products</p>
-        <ul class="mt-2 border-b border-line pb-4">
-          {
-            products.map((p) => (
-              <li>
-                <a href={`/products/${p.slug}`} class="block py-3 font-display text-3xl">
-                  {p.shortName}
-                </a>
-              </li>
-            ))
-          }
-          <li>
-            <a href="/phantom-screens" class="block py-3 font-display text-3xl">
-              Phantom Screens
-            </a>
-          </li>
-        </ul>
-        <ul>
+  <div
+    id="mobile-nav"
+    hidden
+    class="fixed inset-x-0 top-20 h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-line bg-lace lg:hidden"
+  >
+    <Container class="flex min-h-full flex-col justify-between py-6 pb-20">
+      <nav aria-label="Mobile" class="flex flex-col">
+        <div>
+          <p class="text-[12px] font-semibold uppercase tracking-[0.08em] text-spice">Products</p>
+          <ul class="mt-2 border-b border-line pb-3">
+            {
+              products.map((p) => (
+                <li>
+                  <a href={`/products/${p.slug}`} class="block py-2 font-display text-2xl text-graphite hover:text-spice transition-colors">
+                    {p.shortName}
+                  </a>
+                </li>
+              ))
+            }
+            <li>
+              <a href="/phantom-screens" class="block py-2 font-display text-2xl text-graphite hover:text-spice transition-colors">
+                Phantom Screens
+              </a>
+            </li>
+          </ul>
+        </div>
+        <ul class="mt-1 divide-y divide-line/60">
           {
             primaryNav
               .filter((item) => item.href !== '/phantom-screens')
               .map((item) => (
-                <li class="border-b border-line">
-                  <a href={item.href} class="block py-4 font-display text-3xl">
+                <li>
+                  <a href={item.href} class="block py-2.5 font-display text-2xl text-graphite hover:text-spice transition-colors">
                     {item.label}
                   </a>
                 </li>
               ))
           }
         </ul>
-        <div class="mt-10 flex flex-col gap-4">
+        <div class="mt-6 flex flex-col gap-3 border-t border-line pt-5">
           <Button href={site.cta.href} size="lg" full>{site.cta.label}</Button>
-          <a href={`tel:${site.phoneTel}`} class="text-center text-[15px] text-mist">
-            Call our team: {site.phoneDisplay}
+          <a href={`tel:${site.phoneTel}`} class="text-center text-[14.5px] font-medium text-mist hover:text-spice py-1">
+            Call our team: <span class="font-semibold text-graphite">{site.phoneDisplay}</span>
           </a>
         </div>
       </nav>
@@ -151,12 +150,6 @@ const onProducts = path.startsWith('/products');
   @media (max-width: 1023.98px) {
     .header-cta-desktop {
       display: none !important;
-    }
-  }
-
-  @media (max-width: 359px) {
-    .mobile-header-spacer {
-      display: none;
     }
   }
 
