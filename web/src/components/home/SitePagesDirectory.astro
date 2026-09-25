@@ -1,0 +1,129 @@
+---
+import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
+import Section from '../ui/Section.astro';
+
+const pages = [
+  {
+    title: 'Brand Review & Logo Suite',
+    category: 'Client Presentation',
+    badge: 'For Brent',
+    badgeColor: 'bg-spice text-lace',
+    href: '/brand',
+    description: 'Review the 3 original vector logos (Horizon, Slatted Sun, Radiant) with live mockups on a service van, business card, and live header preview.'
+  },
+  {
+    title: 'Window Pricing Estimator',
+    category: 'Interactive Tool',
+    badge: 'Interactive',
+    badgeColor: 'bg-honey/20 text-graphite border border-honey/40',
+    href: '/estimate',
+    description: 'Ballpark cost calculator with width/height sliders, Vancouver window presets, motor drive options, and instant pricing ranges.'
+  },
+  {
+    title: 'Motorized Roller Shades',
+    category: 'Product Collection',
+    badge: 'Collection 01',
+    badgeColor: 'bg-lace text-mist border border-line',
+    href: '/products/motorized-roller-shades',
+    description: 'Clean minimalist fabric panels with whisper-quiet motors, solar screens, and interactive light & opacity simulator.'
+  },
+  {
+    title: 'Motorized Dual / Zebra Shades',
+    category: 'Product Collection',
+    badge: 'Collection 02',
+    badgeColor: 'bg-lace text-mist border border-line',
+    href: '/products/motorized-dual-shades',
+    description: 'Alternating sheer and solid bands shifting between view and total privacy without lifting the shade.'
+  },
+  {
+    title: 'Motorized Honeycomb Shades',
+    category: 'Product Collection',
+    badge: 'Collection 03',
+    badgeColor: 'bg-lace text-mist border border-line',
+    href: '/products/motorized-honeycomb-shades',
+    description: 'Insulating cellular construction that traps a layer of air at the window to cut heat loss and solar gain.'
+  },
+  {
+    title: 'Phantom Retractable Screens',
+    category: 'Product Collection',
+    badge: 'Door Screens',
+    badgeColor: 'bg-lace text-mist border border-line',
+    href: '/phantom-screens',
+    description: 'Custom-fit retractable screens for hinged, French, and sliding patio doors that glide out of sight.'
+  },
+  {
+    title: 'About Sungod & Brent',
+    category: 'Company',
+    badge: 'Story & Service',
+    badgeColor: 'bg-lace text-mist border border-line',
+    href: '/about',
+    description: 'Company philosophy, Brent Repin’s principal background, 12 Lower Mainland service areas, and 3-step installation craft.'
+  },
+  {
+    title: 'Consultation & Written Quote',
+    category: 'Contact',
+    badge: 'Direct Booking',
+    badgeColor: 'bg-lace text-mist border border-line',
+    href: '/quote',
+    description: 'Request an in-home measurement, fabric sample review, and itemized written proposal with no pressure.'
+  }
+];
+---
+
+<Section tone="lace" pad="md" id="pages" class="border-t border-line">
+  <Container>
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="text-[13px] font-semibold tracking-[0.08em] text-spice uppercase">Site Directory &amp; Draft Pages</p>
+        <h2 class="mt-2 text-[clamp(2.25rem,4vw,3.5rem)] leading-tight text-graphite">
+          Every page on Sungod Blinds.
+        </h2>
+        <p class="mt-3 max-w-[50ch] text-[16px] text-mist">
+          A complete overview of all draft sections and dedicated pages built for the site. Click any tile to review that page directly.
+        </p>
+      </div>
+
+      <a
+        href="#top"
+        class="inline-flex items-center gap-2 text-[14px] font-medium text-spice hover:underline hover:underline-offset-4"
+      >
+        <span>Back to top of homepage</span>
+        <Icon name="arrow-up-light" size={16} />
+      </a>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        pages.map((p) => (
+          <a
+            href={p.href}
+            class="group flex flex-col justify-between rounded-card border border-line bg-paper p-6 transition-all duration-200 hover:-translate-y-1 hover:border-spice hover:shadow-md"
+          >
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] font-semibold tracking-[0.06em] text-mist uppercase">{p.category}</span>
+                <span class:list={['rounded-full px-2.5 py-0.5 text-[11px] font-medium', p.badgeColor]}>
+                  {p.badge}
+                </span>
+              </div>
+
+              <h3 class="mt-4 font-display text-2xl text-graphite transition-colors group-hover:text-spice">
+                {p.title}
+              </h3>
+
+              <p class="mt-3 text-[13px] leading-relaxed text-mist">
+                {p.description}
+              </p>
+            </div>
+
+            <div class="mt-6 flex items-center gap-2 border-t border-line/60 pt-4 text-[13px] font-medium text-spice">
+              <span>Open page</span>
+              <Icon name="arrow-right-light" size={15} class="transition-transform group-hover:translate-x-1" />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </Container>
+</Section>

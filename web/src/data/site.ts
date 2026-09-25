@@ -34,5 +34,6 @@ export const site = {
 export const primaryNav: NavItem[] = [
   { label: 'Pricing Estimator', href: '/estimate' },
   { label: 'Phantom Screens', href: '/phantom-screens' },
-  { label: 'About', href: '/about' }
+  { label: 'About', href: '/about' },
+  { label: 'Brand Review', href: '/brand' }
 ];

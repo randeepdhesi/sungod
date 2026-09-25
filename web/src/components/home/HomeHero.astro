@@ -5,7 +5,7 @@ import Container from '../ui/Container.astro';
 import StockImage from '../ui/StockImage.astro';
 ---
 
-<section class="bg-lace">
+<section id="top" class="bg-lace">
   <Container size="wide" class="grid gap-10 border-b border-line pb-12 pt-10 md:gap-14 md:pb-16 md:pt-16 lg:min-h-[680px] lg:grid-cols-[42fr_58fr] lg:items-center lg:gap-16 lg:py-14">
     <div class="lg:py-12">
       <p class="mb-8 text-[13px] font-medium text-mist">Metro Vancouver · Motorized window coverings</p>
@@ -18,6 +18,28 @@ import StockImage from '../ui/StockImage.astro';
       <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
         <Button href="#quote" size="lg">Request a consultation</Button>
         <Button href="#estimator" variant="ghost" size="lg">Price Estimator</Button>
+      </div>
+
+      <!-- Quick Scroll Navigation Pills -->
+      <div class="mt-10 border-t border-line/60 pt-5">
+        <p class="text-[12px] font-semibold tracking-[0.06em] text-mist uppercase">Quick Page &amp; Section Jump:</p>
+        <div class="mt-2.5 flex flex-wrap gap-2 text-[12px]">
+          <a href="#collections" class="rounded-btn border border-line bg-paper px-2.5 py-1 text-graphite transition hover:border-spice">
+            01 · Four Collections
+          </a>
+          <a href="#estimator" class="rounded-btn border border-line bg-paper px-2.5 py-1 text-graphite transition hover:border-spice">
+            02 · Pricing Estimator
+          </a>
+          <a href="#process" class="rounded-btn border border-line bg-paper px-2.5 py-1 text-graphite transition hover:border-spice">
+            03 · In-Home Process
+          </a>
+          <a href="#quote" class="rounded-btn border border-line bg-paper px-2.5 py-1 text-graphite transition hover:border-spice">
+            04 · Consultation Form
+          </a>
+          <a href="#pages" class="rounded-btn border border-spice/40 bg-spice/10 px-2.5 py-1 font-medium text-spice transition hover:border-spice">
+            05 · All Site Pages Directory ↓
+          </a>
+        </div>
       </div>
     </div>
     <figure class="min-w-0">
