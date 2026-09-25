@@ -6,12 +6,13 @@ const phoneDisplay = '604.720.5471';
 export const site = {
   name: 'Sungod Blinds',
   domain: 'sungodblinds.ca',
+  domainCom: 'sungodblinds.com',
   url: 'https://sungodblinds.ca',
-  principal: { name: 'Brent Repin', title: 'Principal' },
+  team: { name: 'Sungod Specialists', title: 'In-House Crew' },
   phoneDisplay,
   phoneTel: formatTel(phoneDisplay),
-  // TODO: confirm business email with Brent
-  email: undefined as string | undefined,
+  email: 'info@sungodblinds.ca',
+  hours: 'Monday – Saturday: 8:00 AM – 6:00 PM',
   region: 'Metro Vancouver & Lower Mainland, BC',
   serviceAreas: [
     'Vancouver',
@@ -35,5 +36,6 @@ export const primaryNav: NavItem[] = [
   { label: 'Pricing Estimator', href: '/estimate' },
   { label: 'Phantom Screens', href: '/phantom-screens' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
   { label: 'Brand Review', href: '/brand' }
 ];

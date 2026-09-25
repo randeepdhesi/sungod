@@ -97,11 +97,11 @@ export const images = {
     2000
   ),
   quotePanel: asset(
-    unsplash('photo-1617614649797-16d75555a2bc'),
-    'Warm sunlight and soft shadows across a plain plaster wall',
-    'John Ettema on Unsplash',
-    1400,
-    1600
+    unsplash('photo-1600585154340-be6161a56a0c'),
+    'Modern architectural living room with floor-to-ceiling windows and motorized window coverings',
+    'R ARCHITECTURE on Unsplash',
+    1600,
+    2000
   ),
   aboutHero: asset(
     pexels('3284980/pexels-photo-3284980.png'),

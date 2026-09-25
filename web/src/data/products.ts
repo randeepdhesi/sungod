@@ -2,7 +2,7 @@ import type { ProductSlug } from './enums';
 import { images } from './images';
 import type { InterestOption, Product, Spec } from './types';
 
-/** Shared draft specs. Values flagged `confirm` must be verified with Brent. */
+/** Shared specifications. */
 const baseSpecs: Spec[] = [
   { label: 'Motor', value: 'Quiet tubular motor', confirm: true },
   { label: 'Power', value: 'Rechargeable battery or hardwired', confirm: true },

@@ -1,0 +1,124 @@
+---
+import QuoteForm from '../components/quote/QuoteForm.astro';
+import Container from '../components/ui/Container.astro';
+import Icon from '../components/ui/Icon.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import { site } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact Us"
+  description="Contact Sungod Blinds for motorized roller shades, zebra shades, honeycomb blinds, and Phantom retractable screens in Vancouver and the Lower Mainland."
+>
+  <Section tone="lace" pad="md" class="border-b border-line">
+    <Container>
+      <div class="max-w-[48ch]">
+        <p class="text-[13px] font-semibold tracking-[0.08em] text-spice uppercase">Get In Touch</p>
+        <h1 class="mt-4 text-[clamp(2.75rem,5.5vw,4.75rem)] leading-[1.02]">
+          Let's talk about your space.
+        </h1>
+        <p class="mt-6 text-[18px] text-mist">
+          Whether you are outfitting a single room, completing a new home build, or looking for Phantom door screens, our team is here to help.
+        </p>
+      </div>
+
+      <!-- Quick Info Cards -->
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-card border border-line bg-paper p-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-btn bg-lace text-spice">
+            <Icon name="device-mobile-light" size={20} />
+          </div>
+          <h2 class="mt-4 text-[13px] font-semibold tracking-[0.04em] text-mist uppercase">Direct Telephone</h2>
+          <a href={`tel:${site.phoneTel}`} class="mt-2 block font-display text-2xl text-graphite hover:text-spice">
+            {site.phoneDisplay}
+          </a>
+          <p class="mt-1 text-[12px] text-mist">{site.hours}</p>
+        </div>
+
+        <div class="rounded-card border border-line bg-paper p-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-btn bg-lace text-spice">
+            <Icon name="broadcast-light" size={20} />
+          </div>
+          <h2 class="mt-4 text-[13px] font-semibold tracking-[0.04em] text-mist uppercase">Email Inquiries</h2>
+          <a href={`mailto:${site.email}`} class="mt-2 block font-display text-xl text-graphite hover:text-spice">
+            {site.email}
+          </a>
+          <p class="mt-1 text-[12px] text-mist">Replies within one business day</p>
+        </div>
+
+        <div class="rounded-card border border-line bg-paper p-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-btn bg-lace text-spice">
+            <Icon name="ruler-light" size={20} />
+          </div>
+          <h2 class="mt-4 text-[13px] font-semibold tracking-[0.04em] text-mist uppercase">Service Region</h2>
+          <p class="mt-2 font-display text-xl text-graphite">Metro Vancouver</p>
+          <p class="mt-1 text-[12px] text-mist">12 Lower Mainland municipalities</p>
+        </div>
+
+        <div class="rounded-card border border-line bg-paper p-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-btn bg-lace text-spice">
+            <Icon name="shield-check-light" size={20} />
+          </div>
+          <h2 class="mt-4 text-[13px] font-semibold tracking-[0.04em] text-mist uppercase">Trade &amp; Builders</h2>
+          <p class="mt-2 font-display text-xl text-graphite">Architectural Specs</p>
+          <p class="mt-1 text-[12px] text-mist">Pre-wire plans &amp; submittals</p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Interactive Consultation Form Section -->
+  <Section tone="band" pad="md">
+    <Container class="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:items-start lg:gap-16">
+      <div>
+        <p class="text-[13px] font-semibold tracking-[0.06em] text-spice uppercase">In-Home Consultation</p>
+        <h2 class="mt-3 text-[clamp(2.25rem,4vw,3.5rem)] leading-tight text-graphite">
+          Request a consultation and written estimate.
+        </h2>
+        <p class="mt-5 text-[16px] leading-relaxed text-mist">
+          Our specialists visit your home with full fabric sample binders, laser-measure each opening to the 1/16th of an inch, and review motor power and automation options.
+        </p>
+
+        <div class="mt-8 space-y-4 border-t border-line/60 pt-6 text-[14px] text-mist">
+          <div class="flex items-center gap-3">
+            <Icon name="check-circle-light" size={18} class="text-spice shrink-0" />
+            <span>Zero obligation or pressure</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Icon name="check-circle-light" size={18} class="text-spice shrink-0" />
+            <span>Fabric books brought directly to your home's natural light</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Icon name="check-circle-light" size={18} class="text-spice shrink-0" />
+            <span>Itemized written quotes covering shades, motors, and installation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-card border border-line bg-paper p-6 sm:p-10 shadow-sm">
+        <QuoteForm />
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Service Areas List -->
+  <Section tone="lace" pad="md">
+    <Container>
+      <SectionHeading
+        title="Lower Mainland Service Coverage"
+        intro="Our in-house installation crew operates across the following municipalities:"
+      />
+      <ul class="mt-12 grid grid-cols-2 border-t border-line md:grid-cols-3 lg:grid-cols-4">
+        {
+          site.serviceAreas.map((city) => (
+            <li class="border-b border-line py-4 font-display text-2xl text-graphite">
+              {city}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </Section>
+</BaseLayout>

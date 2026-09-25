@@ -29,9 +29,9 @@ const { headingLevel: Heading = 'h2', title = 'Start your project.' } = Astro.pr
           <Heading class="text-[40px] leading-none">{title}</Heading>
           <p class="mt-3 text-mist">Vancouver &amp; Lower Mainland.</p>
           <p class="mt-4 text-[15px] text-graphite">
-            Or call Brent:{' '}
+            Direct phone consultation:{' '}
             <a href={`tel:${site.phoneTel}`} class="font-medium underline decoration-line underline-offset-4 hover:decoration-spice">
-              C {site.phoneDisplay}
+              {site.phoneDisplay}
             </a>
           </p>
         </PlasterTile>

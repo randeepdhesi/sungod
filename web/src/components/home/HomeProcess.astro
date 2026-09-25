@@ -1,21 +1,20 @@
 ---
-import { images } from '../../data/images';
 import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
 import Section from '../ui/Section.astro';
-import StockImage from '../ui/StockImage.astro';
 
 const steps = [
   {
-    title: 'Consult at home',
-    detail: 'We look at each window in its own light and talk about privacy, glare and how you want the room to feel.'
+    title: 'In-home consultation',
+    detail: 'We inspect every window in its own light, bringing full physical sample books to discuss openness, privacy, and room ambiance.'
   },
   {
-    title: 'Measure & specify',
-    detail: 'We measure, bring fabric samples and plan the controls before putting together a clear written quote.'
+    title: 'Laser measure & specification',
+    detail: 'Our technicians laser-measure to the 1/16th of an inch, calculate power runs, and generate an itemized, clear proposal.'
   },
   {
-    title: 'Install & program',
-    detail: 'Once installed, we set the limits, group the shades and show you how to use your schedules.'
+    title: 'Professional install & programming',
+    detail: 'Our dedicated crew installs hardware, conceals wiring, calibrates upper/lower travel limits, groups rooms, and syncs smart schedules.'
   }
 ];
 ---
@@ -23,18 +22,45 @@ const steps = [
 <Section tone="band" pad="none" id="process" class="py-20 md:py-28">
   <Container class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-24">
     <div>
-      <p class="text-[13px] font-medium text-mist">From first visit to final setting</p>
-      <h2 class="mt-6 max-w-[14ch] text-[clamp(2.5rem,4.5vw,4.25rem)] leading-[1.03]">A shade is only as good as the fit.</h2>
-      <p class="mt-6 max-w-[40ch] text-mist">We handle the details behind the button: the measure, the fabric, the controls and the way it all works together.</p>
-      <StockImage image={images.fabricInset} sizes="(min-width: 1024px) 280px, 45vw" widths={[440, 660, 880]} class="mt-10 aspect-[3/2] w-48 object-cover md:w-72" />
+      <p class="text-[13px] font-semibold tracking-[0.06em] text-spice uppercase">Our Precision Standards</p>
+      <h2 class="mt-4 max-w-[14ch] text-[clamp(2.5rem,4.5vw,4.25rem)] leading-[1.03]">A shade is only as good as the fit.</h2>
+      <p class="mt-5 max-w-[40ch] text-mist">
+        We handle the engineering behind the button: laser measurements, fabric density, motor selection, and smart home integration.
+      </p>
+
+      <!-- Precision & Quality Credentials -->
+      <div class="mt-8 grid gap-3 max-w-sm">
+        <div class="flex items-center gap-3 rounded-card border border-line bg-paper px-4 py-3 shadow-xs">
+          <Icon name="ruler-light" size={20} class="text-spice shrink-0" />
+          <div>
+            <p class="text-[13px] font-semibold text-graphite">±1/16" Laser Precision</p>
+            <p class="text-[12px] text-mist">Custom fabricated for minimal light gaps</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 rounded-card border border-line bg-paper px-4 py-3 shadow-xs">
+          <Icon name="shield-check-light" size={20} class="text-spice shrink-0" />
+          <div>
+            <p class="text-[13px] font-semibold text-graphite">In-House Installation Crew</p>
+            <p class="text-[12px] text-mist">Zero third-party subcontractor handoffs</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 rounded-card border border-line bg-paper px-4 py-3 shadow-xs">
+          <Icon name="check-circle-light" size={20} class="text-spice shrink-0" />
+          <div>
+            <p class="text-[13px] font-semibold text-graphite">5-Year Certified Warranty</p>
+            <p class="text-[12px] text-mist">Covers tubular motors, electronics &amp; fabrics</p>
+          </div>
+        </div>
+      </div>
     </div>
+
     <ol class="border-t border-line">
       {
         steps.map((step, index) => (
           <li class="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-7 md:grid-cols-[4rem_1fr] md:gap-7 md:py-9">
-            <span class="pt-1 text-[13px] tabular-nums text-mist">{String(index + 1).padStart(2, '0')}</span>
+            <span class="pt-1 text-[13px] font-mono tabular-nums text-mist">{String(index + 1).padStart(2, '0')}</span>
             <div>
-              <h3 class="text-[clamp(1.6rem,2.5vw,2.25rem)] leading-[1.1]">{step.title}</h3>
+              <h3 class="text-[clamp(1.6rem,2.5vw,2.25rem)] leading-[1.1] text-graphite">{step.title}</h3>
               <p class="mt-3 max-w-[43ch] text-[15px] leading-relaxed text-mist">{step.detail}</p>
             </div>
           </li>
