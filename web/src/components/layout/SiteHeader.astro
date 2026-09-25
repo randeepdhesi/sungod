@@ -110,16 +110,23 @@ const onProducts = path.startsWith('/products');
               </li>
             ))
           }
+          <li>
+            <a href="/phantom-screens" class="block py-3 font-display text-3xl">
+              Phantom Screens
+            </a>
+          </li>
         </ul>
         <ul>
           {
-            primaryNav.map((item) => (
-              <li class="border-b border-line">
-                <a href={item.href} class="block py-4 font-display text-3xl">
-                  {item.label}
-                </a>
-              </li>
-            ))
+            primaryNav
+              .filter((item) => item.href !== '/phantom-screens')
+              .map((item) => (
+                <li class="border-b border-line">
+                  <a href={item.href} class="block py-4 font-display text-3xl">
+                    {item.label}
+                  </a>
+                </li>
+              ))
           }
         </ul>
         <div class="mt-10 flex flex-col gap-4">
