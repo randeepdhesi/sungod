@@ -15,9 +15,16 @@ const onProducts = path.startsWith('/products');
   data-site-header
   class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-lace data-scrolled:border-line data-scrolled:bg-paper"
 >
-  <Container size="wide" class="flex h-20 items-center justify-between gap-6">
-    <a href="/" aria-label="Sungod Blinds home" class="text-graphite">
-      <SiteWordmark />
+  <Container size="wide" class="flex h-20 items-center justify-between gap-2 sm:gap-6">
+    <!-- Mobile left spacer to balance hamburger button and achieve clean centering -->
+    <div class="mobile-header-spacer w-11 shrink-0 lg:hidden" aria-hidden="true"></div>
+
+    <a
+      href="/"
+      aria-label="Sungod Blinds home"
+      class="flex flex-1 items-center justify-center text-graphite lg:flex-initial lg:justify-start"
+    >
+      <SiteWordmark class="scale-115 sm:scale-125 lg:scale-100 transition-transform origin-center lg:origin-left" />
     </a>
 
     <nav aria-label="Primary" class="hidden lg:block">
@@ -144,6 +151,12 @@ const onProducts = path.startsWith('/products');
   @media (max-width: 1023.98px) {
     .header-cta-desktop {
       display: none !important;
+    }
+  }
+
+  @media (max-width: 359px) {
+    .mobile-header-spacer {
+      display: none;
     }
   }
 
