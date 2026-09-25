@@ -82,10 +82,15 @@ const onProducts = path.startsWith('/products');
         data-menu-toggle
         aria-expanded="false"
         aria-controls="mobile-nav"
-        class="flex h-11 items-center gap-2 px-2 text-[14px] font-medium lg:hidden"
+        aria-label="Toggle navigation menu"
+        class="relative flex h-11 w-11 items-center justify-center rounded-btn border border-line bg-paper text-graphite transition hover:border-graphite focus:outline-none lg:hidden shrink-0"
       >
-        <Icon name="list-light" size={22} />
-        <span data-menu-label>Menu</span>
+        <span class="sr-only">Toggle navigation menu</span>
+        <div class="relative flex h-3.5 w-4.5 flex-col justify-between">
+          <span class="bar-top h-0.5 w-full rounded-full bg-graphite transition-transform duration-300 ease-out origin-center"></span>
+          <span class="bar-mid h-0.5 w-full rounded-full bg-graphite transition-all duration-200 ease-out origin-center"></span>
+          <span class="bar-bot h-0.5 w-full rounded-full bg-graphite transition-transform duration-300 ease-out origin-center"></span>
+        </div>
       </button>
     </div>
   </Container>
@@ -126,3 +131,16 @@ const onProducts = path.startsWith('/products');
     </Container>
   </div>
 </header>
+
+<style>
+  [data-menu-toggle][aria-expanded='true'] .bar-top {
+    transform: translateY(6px) rotate(45deg);
+  }
+  [data-menu-toggle][aria-expanded='true'] .bar-mid {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  [data-menu-toggle][aria-expanded='true'] .bar-bot {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+</style>

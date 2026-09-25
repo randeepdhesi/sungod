@@ -2,7 +2,6 @@
 import LogoHorizon from './LogoHorizon.astro';
 import LogoRadiant from './LogoRadiant.astro';
 import LogoSlatted from './LogoSlatted.astro';
-import Icon from '../ui/Icon.astro';
 
 interface Props {
   class?: string;
@@ -13,14 +12,10 @@ const { class: cls, tone = 'light' } = Astro.props;
 ---
 
 <span data-site-wordmark class:list={['inline-flex items-center', cls]}>
-  <span data-mark-default class="inline-flex items-center gap-2.5">
-    <Icon name="sun-light" size={22} class="text-honey" />
-    <span class="font-display text-[21px] leading-none tracking-[0.28em]">SUNGOD</span>
-  </span>
   <span data-mark-a hidden class="inline-flex items-center">
     <LogoHorizon variant="compact" tone={tone} size={15} />
   </span>
-  <span data-mark-b hidden class="inline-flex items-center">
+  <span data-mark-b class="inline-flex items-center">
     <LogoSlatted variant="compact" tone={tone} size={15} />
   </span>
   <span data-mark-c hidden class="inline-flex items-center">
@@ -30,17 +25,14 @@ const { class: cls, tone = 'light' } = Astro.props;
 
 <script>
   function applyActiveBrandMark() {
-    const saved = localStorage.getItem('sungod_active_logo') || new URLSearchParams(window.location.search).get('logo');
-    if (!saved) return;
-    const choice = saved.toUpperCase();
+    const saved = localStorage.getItem('sungod_active_logo') || new URLSearchParams(window.location.search).get('logo') || 'B';
+    const choice = (saved || 'B').toUpperCase();
     if (!['A', 'B', 'C'].includes(choice)) return;
 
     document.querySelectorAll('[data-site-wordmark]').forEach((root) => {
-      const def = root.querySelector('[data-mark-default]');
       const a = root.querySelector('[data-mark-a]');
       const b = root.querySelector('[data-mark-b]');
       const c = root.querySelector('[data-mark-c]');
-      if (def) (def as HTMLElement).hidden = true;
       if (a) (a as HTMLElement).hidden = choice !== 'A';
       if (b) (b as HTMLElement).hidden = choice !== 'B';
       if (c) (c as HTMLElement).hidden = choice !== 'C';

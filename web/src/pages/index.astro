@@ -4,7 +4,7 @@ import CollectionsIndex from '../components/home/CollectionsIndex.astro';
 import HomeHero from '../components/home/HomeHero.astro';
 import HomeProcess from '../components/home/HomeProcess.astro';
 import QuoteSection from '../components/quote/QuoteSection.astro';
-import SitePagesDirectory from '../components/home/SitePagesDirectory.astro';
+import BrandConceptsGrid from '../components/home/BrandConceptsGrid.astro';
 import Container from '../components/ui/Container.astro';
 import Section from '../components/ui/Section.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
@@ -33,9 +33,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- 3-Step Precision Measure & Install Craft -->
   <HomeProcess />
 
+  <!-- Brand Identity Review Concepts -->
+  <BrandConceptsGrid title="Brand Identity Concepts" />
+
   <!-- Consultation & Quote Form Directly on Homepage -->
   <QuoteSection headingLevel="h2" title="Book your in-home consultation." />
-
-  <!-- Complete Site Pages Directory for Easy Review & Navigation -->
-  <SitePagesDirectory />
 </BaseLayout>

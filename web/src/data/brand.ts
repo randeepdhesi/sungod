@@ -2,18 +2,18 @@ import type { LogoConcept, PaletteSwatch } from './types';
 
 export const logoConcepts: LogoConcept[] = [
   {
-    id: 'A',
-    name: 'Horizon',
-    rationale:
-      "A rising sun resting on a shade's bottom rail. Sunrise meets the blind: the name and the product in one mark.",
-    component: 'horizon'
-  },
-  {
     id: 'B',
     name: 'Slatted Sun',
     rationale:
       'A sun disc sliced by slats that open as they fall. Literally light through blinds, geometric and modern.',
     component: 'slatted'
+  },
+  {
+    id: 'A',
+    name: 'Horizon',
+    rationale:
+      "A rising sun resting on a shade's bottom rail. Sunrise meets the blind: the name and the product in one mark.",
+    component: 'horizon'
   },
   {
     id: 'C',
