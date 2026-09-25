@@ -50,7 +50,16 @@ const wordSize = variant === 'full' ? size * 1.35 : size * 0.95;
     <circle cx="32" cy="32" r="26" fill="var(--color-honey)" mask={`url(#${uid})`}></circle>
   </svg>
   {
-    variant !== 'mark' && (
+    variant === 'full' ? (
+      <span aria-hidden="true" class="flex flex-col items-center leading-none text-center">
+        <span class="font-light font-sans" style={`font-size:${wordSize}px;letter-spacing:0.38em;padding-left:0.38em`}>
+          SUNGOD
+        </span>
+        <span class="mt-2.5 font-semibold font-sans text-spice uppercase" style={`font-size:${Math.max(wordSize * 0.44, 11)}px;letter-spacing:0.3em;padding-left:0.3em`}>
+          BLINDS
+        </span>
+      </span>
+    ) : variant !== 'mark' ? (
       <span aria-hidden="true" class="flex items-center font-sans leading-none" style={`font-size:${wordSize}px`}>
         <span class="font-light" style="letter-spacing:0.42em">
           SUNGOD
@@ -60,6 +69,6 @@ const wordSize = variant === 'full' ? size * 1.35 : size * 0.95;
           BLINDS
         </span>
       </span>
-    )
+    ) : null
   }
 </div>

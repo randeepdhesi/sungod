@@ -32,5 +32,5 @@ const srcset = widths.map((w) => `${image.srcFor(w)} ${w}w`).join(', ');
   loading={loading}
   fetchpriority={fetchpriority}
   decoding="async"
-  class={cls}
+  class:list={['max-w-full', cls]}
 />

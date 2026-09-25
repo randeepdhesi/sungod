@@ -28,8 +28,10 @@ const [primary, ...others] = logoConcepts;
     <div class="mt-14 grid gap-6 lg:grid-cols-[2fr_1fr] lg:grid-rows-2">
       {
         primary && (
-          <KeylineFrame fill="graphite" class="lg:row-span-2" innerClass="relative flex min-h-[420px] items-center justify-center lg:min-h-[560px]" data-reveal>
-            <Logo concept={primary} tone="dark" size={26} />
+          <KeylineFrame fill="graphite" class="lg:row-span-2 overflow-hidden max-w-full" innerClass="relative flex min-h-[340px] sm:min-h-[420px] items-center justify-center p-6 lg:min-h-[560px] overflow-hidden" data-reveal>
+            <div class="flex max-w-full flex-col items-center justify-center overflow-hidden px-2">
+              <Logo concept={primary} tone="dark" size={19} class="max-w-full" />
+            </div>
             <p class="absolute bottom-6 left-6 text-[13px] text-lace/80 md:bottom-8 md:left-8">
               {primary.id} · {primary.name}
             </p>
@@ -40,11 +42,14 @@ const [primary, ...others] = logoConcepts;
         others.map((c, i) => (
           <KeylineFrame
             fill={tone === 'lace' ? 'paper' : 'lace'}
-            innerClass="relative flex min-h-[260px] items-center justify-center"
+            class="overflow-hidden max-w-full"
+            innerClass="relative flex min-h-[220px] sm:min-h-[260px] items-center justify-center p-6 overflow-hidden"
             data-reveal
             data-reveal-delay={String((i + 1) * 0.08)}
           >
-            <Logo concept={c} size={16} />
+            <div class="flex max-w-full flex-col items-center justify-center overflow-hidden px-2">
+              <Logo concept={c} size={15} class="max-w-full" />
+            </div>
             <p class="absolute bottom-5 left-5 text-[13px] text-mist md:bottom-6 md:left-6">
               {c.id} · {c.name}
             </p>

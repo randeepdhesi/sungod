@@ -25,10 +25,10 @@ const strokeClass = fill === 'graphite' ? 'bg-honey/55' : 'bg-line';
 const k = (inset: number) => `--k:${Math.max(corner - inset * 0.41, 0)}px`;
 ---
 
-<Tag class:list={['clip-corners p-px', strokeClass, cls]} style={k(0)} {...rest}>
-  <div class:list={['clip-corners h-full p-[3px]', fillClass[fill]]} style={k(1)}>
-    <div class:list={['clip-corners h-full p-px', strokeClass]} style={k(4)}>
-      <div class:list={['clip-corners h-full p-6 md:p-8', fillClass[fill], innerClass]} style={k(5)}>
+<Tag class:list={['clip-corners p-px max-w-full overflow-hidden', strokeClass, cls]} style={k(0)} {...rest}>
+  <div class:list={['clip-corners h-full max-w-full overflow-hidden p-[3px]', fillClass[fill]]} style={k(1)}>
+    <div class:list={['clip-corners h-full max-w-full overflow-hidden p-px', strokeClass]} style={k(4)}>
+      <div class:list={['clip-corners h-full max-w-full overflow-hidden p-6 md:p-8', fillClass[fill], innerClass]} style={k(5)}>
         <slot />
       </div>
     </div>
