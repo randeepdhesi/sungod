@@ -25,3 +25,5 @@ Thumbs.db
 
 # Tooling
 .kombai/
+.vercel
+.env*

@@ -9,8 +9,6 @@ export default defineConfig({
   site: 'https://sungodblinds.ca',
   output: 'static',
   trailingSlash: 'never',
-  // `file` format emits about.html etc. so Cloudflare Pages serves /about without a trailing-slash redirect.
-  build: { format: 'file' },
   vite: {
     plugins: [tailwindcss()]
   },

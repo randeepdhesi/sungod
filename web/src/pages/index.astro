@@ -1,14 +1,37 @@
 ---
+import EstimateCalculator from '../components/calculator/EstimateCalculator.astro';
 import CollectionsIndex from '../components/home/CollectionsIndex.astro';
 import HomeHero from '../components/home/HomeHero.astro';
-import HomePhantom from '../components/home/HomePhantom.astro';
 import HomeProcess from '../components/home/HomeProcess.astro';
+import QuoteSection from '../components/quote/QuoteSection.astro';
+import Container from '../components/ui/Container.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout description="Sungod Blinds measures, installs and programs motorized roller, dual and honeycomb shades across Metro Vancouver and the Lower Mainland. Request a consultation.">
   <HomeHero />
+
+  <!-- 4 Core Products with Large Visual Showcase -->
   <CollectionsIndex />
+
+  <!-- Interactive Pricing Estimator Directly on Homepage -->
+  <Section tone="band" pad="md" id="estimator">
+    <Container>
+      <SectionHeading
+        title="Interactive Window Pricing Estimator"
+        intro="Select your system, adjust approximate window sizes, and calculate an instant ballpark investment for your home before booking a visit."
+      />
+      <div class="mt-12">
+        <EstimateCalculator />
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 3-Step Precision Measure & Install Craft -->
   <HomeProcess />
-  <HomePhantom />
+
+  <!-- Consultation & Quote Form Directly on Homepage -->
+  <QuoteSection headingLevel="h2" title="Start your project with Brent." />
 </BaseLayout>
