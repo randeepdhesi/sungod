@@ -1,0 +1,37 @@
+---
+import type { ControlOption } from '../../data/types';
+import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Props {
+  items: ControlOption[];
+}
+
+const { items } = Astro.props;
+---
+
+<Section tone="lace" pad="md">
+  <Container>
+    <SectionHeading
+      title="Control it your way."
+      intro="Every Sungod shade ships motorized. Use one control or all of them; we set it up and show you how."
+    />
+    <ul class="mt-14 grid border-y border-line sm:grid-cols-2 lg:grid-cols-5 lg:divide-x lg:divide-line">
+      {
+        items.map((c, i) => (
+          <li
+            class="border-b border-line px-1 py-8 last:border-b-0 sm:px-6 lg:border-b-0 lg:first:pl-0"
+            data-reveal
+            data-reveal-delay={String(i * 0.06)}
+          >
+            <Icon name={c.icon} size={28} class="text-graphite" />
+            <h3 class="mt-5 font-display text-[22px] leading-tight">{c.label}</h3>
+            <p class="mt-2 text-[15px] leading-snug text-mist">{c.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</Section>

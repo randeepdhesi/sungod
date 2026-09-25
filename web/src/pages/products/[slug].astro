@@ -1,0 +1,72 @@
+---
+import LightSimulator from '../../components/interactive/LightSimulator.astro';
+import ControlOptions from '../../components/product/ControlOptions.astro';
+import OptionRows from '../../components/product/OptionRows.astro';
+import QuoteCta from '../../components/product/QuoteCta.astro';
+import RelatedProducts from '../../components/product/RelatedProducts.astro';
+import SpecKeyline from '../../components/product/SpecKeyline.astro';
+import Container from '../../components/ui/Container.astro';
+import Section from '../../components/ui/Section.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import SplitHero from '../../components/ui/SplitHero.astro';
+import TextTrio from '../../components/ui/TextTrio.astro';
+import { controlOptions } from '../../data/controls';
+import { images } from '../../data/images';
+import { products } from '../../data/products';
+import type { Product } from '../../data/types';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return products.map((product) => ({ params: { slug: product.slug }, props: { product } }));
+}
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const related = products.filter((p) => p.slug !== product.slug);
+const controls = controlOptions.filter((c) => product.controls.includes(c.kind));
+const quoteHref = `/quote?product=${product.slug}`;
+---
+
+<BaseLayout title={product.name} description={product.seoDescription} ogImage={product.heroImage.srcFor(1200)}>
+  <SplitHero
+    lines={product.titleLines}
+    tagline={product.tagline}
+    body={product.summary}
+    image={product.heroImage}
+    breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Products' }, { label: product.shortName }]}
+    cta={{ label: 'Get a Quote', href: quoteHref }}
+    secondary={{ label: 'See light options', href: '#light' }}
+  />
+
+  <Section tone="band" pad="lg">
+    <Container>
+      <SectionHeading title={`Why motorized ${product.shortName.toLowerCase()}`} />
+      <TextTrio items={product.benefits} class="mt-14" />
+    </Container>
+  </Section>
+
+  <ControlOptions items={controls} />
+
+  <OptionRows
+    id="light"
+    title="Choose your light."
+    intro="Every fabric is available motorized. We bring samples to your home so you can see them in your own light."
+    rows={product.opacities}
+    showLevel
+  />
+
+  <Section tone="lace" pad="md">
+    <Container>
+      <LightSimulator />
+    </Container>
+  </Section>
+
+  <SpecKeyline specs={product.specs} image={images.specDetail} />
+
+  <RelatedProducts products={related} />
+
+  <QuoteCta href={quoteHref} />
+</BaseLayout>

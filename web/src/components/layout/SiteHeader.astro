@@ -1,0 +1,128 @@
+---
+import { products } from '../../data/products';
+import { primaryNav, site } from '../../data/site';
+import SiteWordmark from '../brand/SiteWordmark.astro';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
+
+const path = Astro.url.pathname.replace(/\.html$/, '');
+const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
+const onProducts = path.startsWith('/products');
+---
+
+<header
+  data-site-header
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-lace data-scrolled:border-line data-scrolled:bg-paper"
+>
+  <Container size="wide" class="flex h-20 items-center justify-between gap-6">
+    <a href="/" aria-label="Sungod Blinds home" class="text-graphite">
+      <SiteWordmark />
+    </a>
+
+    <nav aria-label="Primary" class="hidden lg:block">
+      <ul class="flex items-center gap-10 text-[14px] font-medium">
+        <li class="relative">
+          <button
+            type="button"
+            data-products-toggle
+            aria-expanded="false"
+            aria-controls="products-menu"
+            class:list={[
+              'flex items-center gap-1.5 py-2 hover:text-spice',
+              onProducts && 'underline decoration-honey decoration-2 underline-offset-[10px]'
+            ]}
+          >
+            Products
+            <Icon name="caret-down-light" size={14} />
+          </button>
+          <div
+            id="products-menu"
+            hidden
+            class="absolute left-1/2 top-[calc(100%+22px)] w-[22rem] -translate-x-1/2 rounded-card border border-line bg-paper p-2"
+          >
+            <ul>
+              {
+                products.map((p) => (
+                  <li>
+                    <a
+                      href={`/products/${p.slug}`}
+                      aria-current={isCurrent(`/products/${p.slug}`) ? 'page' : undefined}
+                      class="block rounded-input px-4 py-3 hover:bg-lace aria-[current=page]:bg-lace"
+                    >
+                      <span class="block font-display text-xl leading-tight text-graphite">{p.shortName}</span>
+                      <span class="mt-0.5 block text-[13px] font-normal text-mist">{p.tagline}</span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </li>
+        {
+          primaryNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+                class="py-2 hover:text-spice aria-[current=page]:underline aria-[current=page]:decoration-honey aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-[10px]"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <Button href={site.cta.href} class="hidden whitespace-nowrap sm:inline-flex">{site.cta.label}</Button>
+      <button
+        type="button"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        class="flex h-11 items-center gap-2 px-2 text-[14px] font-medium lg:hidden"
+      >
+        <Icon name="list-light" size={22} />
+        <span data-menu-label>Menu</span>
+      </button>
+    </div>
+  </Container>
+
+  <div id="mobile-nav" hidden class="fixed inset-x-0 bottom-0 top-20 overflow-y-auto border-t border-line bg-lace lg:hidden">
+    <Container class="py-8">
+      <nav aria-label="Mobile">
+        <p class="text-[13px] font-medium text-mist">Products</p>
+        <ul class="mt-2 border-b border-line pb-4">
+          {
+            products.map((p) => (
+              <li>
+                <a href={`/products/${p.slug}`} class="block py-3 font-display text-3xl">
+                  {p.shortName}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <ul>
+          {
+            primaryNav.map((item) => (
+              <li class="border-b border-line">
+                <a href={item.href} class="block py-4 font-display text-3xl">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-10 flex flex-col gap-4">
+          <Button href={site.cta.href} size="lg" full>{site.cta.label}</Button>
+          <a href={`tel:${site.phoneTel}`} class="text-center text-[15px] text-mist">
+            Call Brent: C {site.phoneDisplay}
+          </a>
+        </div>
+      </nav>
+    </Container>
+  </div>
+</header>

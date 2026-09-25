@@ -1,0 +1,50 @@
+---
+import type { ButtonSize, ButtonVariant } from '../../data/enums';
+import Icon from './Icon.astro';
+
+interface Props {
+  href?: string;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  full?: boolean;
+  type?: 'button' | 'submit';
+  class?: string;
+  'aria-label'?: string;
+}
+
+const { href, variant = 'primary', size = 'md', full = false, type = 'button', class: cls, ...rest } = Astro.props;
+
+const variantClass: Record<ButtonVariant, string> = {
+  primary: 'rounded-btn bg-spice text-lace hover:bg-spice-deep',
+  ghost: 'rounded-btn border border-graphite text-graphite hover:bg-graphite hover:text-lace',
+  link: 'group gap-2.5 text-graphite underline decoration-line underline-offset-[6px] hover:decoration-spice'
+};
+
+const sizeClass: Record<ButtonSize, string> = {
+  md: 'h-11 px-5',
+  lg: 'h-13 px-7'
+};
+
+const classes = [
+  'inline-flex items-center justify-center gap-2 text-[15px] font-medium tracking-[0.04em] transition-colors duration-200',
+  variantClass[variant],
+  variant !== 'link' && sizeClass[size],
+  full && 'w-full',
+  cls
+];
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes} {...rest}>
+      <slot />
+      {variant === 'link' && (
+        <Icon name="arrow-right-light" size={16} class="transition-transform duration-300 group-hover:translate-x-1" />
+      )}
+    </a>
+  ) : (
+    <button type={type} class:list={classes} {...rest}>
+      <slot />
+    </button>
+  )
+}

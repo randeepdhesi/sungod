@@ -1,0 +1,51 @@
+---
+import type { HeadingLevel } from '../../data/enums';
+import { images } from '../../data/images';
+import { site } from '../../data/site';
+import Container from '../ui/Container.astro';
+import PlasterTile from '../ui/PlasterTile.astro';
+import Section from '../ui/Section.astro';
+import StockImage from '../ui/StockImage.astro';
+import QuoteForm from './QuoteForm.astro';
+
+interface Props {
+  headingLevel?: HeadingLevel;
+  title?: string;
+}
+
+const { headingLevel: Heading = 'h2', title = 'Start your project.' } = Astro.props;
+---
+
+<Section tone="band" pad="md" id="quote">
+  <Container>
+    <div class="grid overflow-hidden rounded-card bg-lace lg:grid-cols-2">
+      <div class="relative min-h-[420px] lg:min-h-[680px]">
+        <StockImage
+          image={images.quotePanel}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+        <PlasterTile class="absolute bottom-6 left-6 right-6 max-w-sm md:bottom-8 md:left-8">
+          <Heading class="text-[40px] leading-none">{title}</Heading>
+          <p class="mt-3 text-mist">Vancouver &amp; Lower Mainland.</p>
+          <p class="mt-4 text-[15px] text-graphite">
+            Or call Brent:{' '}
+            <a href={`tel:${site.phoneTel}`} class="font-medium underline decoration-line underline-offset-4 hover:decoration-spice">
+              C {site.phoneDisplay}
+            </a>
+          </p>
+        </PlasterTile>
+      </div>
+      <div class="p-6 py-10 md:p-12 lg:p-14">
+        <div class="mb-6 flex items-center justify-between rounded-input border border-line bg-paper px-4 py-3 text-[13px] text-mist">
+          <span>Want ballpark figures first?</span>
+          <a href="/estimate" class="font-medium text-spice hover:underline hover:underline-offset-4">Try Price Estimator →</a>
+        </div>
+        <p class="mb-8 max-w-[44ch] text-mist">
+          Tell us a little about your windows. We'll follow up to book an in-home consultation and measure.
+        </p>
+        <QuoteForm />
+      </div>
+    </div>
+  </Container>
+</Section>

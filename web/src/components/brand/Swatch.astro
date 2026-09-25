@@ -1,0 +1,18 @@
+---
+import type { PaletteSwatch } from '../../data/types';
+
+interface Props {
+  swatch: PaletteSwatch;
+}
+
+const { swatch } = Astro.props;
+---
+
+<li class="flex items-center gap-4">
+  <span class="size-16 shrink-0 rounded-card border border-line" style={`background:${swatch.hex}`} aria-hidden="true"
+  ></span>
+  <span class="text-[14px] leading-snug">
+    <span class="block font-semibold text-graphite">{swatch.name}</span>
+    <span class="block text-mist">{swatch.hex} · {swatch.role}</span>
+  </span>
+</li>

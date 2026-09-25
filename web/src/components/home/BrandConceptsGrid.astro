@@ -1,0 +1,56 @@
+---
+import { logoConcepts } from '../../data/brand';
+import type { HeadingLevel, SectionTone } from '../../data/enums';
+import Logo from '../brand/Logo.astro';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+import KeylineFrame from '../ui/KeylineFrame.astro';
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Props {
+  tone?: SectionTone;
+  headingLevel?: HeadingLevel;
+  showLink?: boolean;
+  title?: string;
+}
+
+const { tone = 'lace', headingLevel = 'h2', showLink = true, title = 'Brand Concepts' } = Astro.props;
+const [primary, ...others] = logoConcepts;
+---
+
+<Section tone={tone} pad="md">
+  <Container>
+    <SectionHeading as={headingLevel} title={title} intro="Three original marks for Sungod. Choose a direction and we'll refine it.">
+      {showLink && <Button href="/brand" variant="link">View full brand sheet</Button>}
+    </SectionHeading>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-[2fr_1fr] lg:grid-rows-2">
+      {
+        primary && (
+          <KeylineFrame fill="graphite" class="lg:row-span-2" innerClass="relative flex min-h-[420px] items-center justify-center lg:min-h-[560px]" data-reveal>
+            <Logo concept={primary} tone="dark" size={26} />
+            <p class="absolute bottom-6 left-6 text-[13px] text-lace/80 md:bottom-8 md:left-8">
+              {primary.id} · {primary.name}
+            </p>
+          </KeylineFrame>
+        )
+      }
+      {
+        others.map((c, i) => (
+          <KeylineFrame
+            fill={tone === 'lace' ? 'paper' : 'lace'}
+            innerClass="relative flex min-h-[260px] items-center justify-center"
+            data-reveal
+            data-reveal-delay={String((i + 1) * 0.08)}
+          >
+            <Logo concept={c} size={16} />
+            <p class="absolute bottom-5 left-5 text-[13px] text-mist md:bottom-6 md:left-6">
+              {c.id} · {c.name}
+            </p>
+          </KeylineFrame>
+        ))
+      }
+    </div>
+  </Container>
+</Section>

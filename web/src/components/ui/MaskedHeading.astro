@@ -1,0 +1,21 @@
+---
+import type { HeadingLevel } from '../../data/enums';
+
+interface Props {
+  lines: string[];
+  as?: HeadingLevel;
+  class?: string;
+}
+
+const { lines, as: Tag = 'h1', class: cls } = Astro.props;
+---
+
+<Tag data-line-mask class={cls}>
+  {
+    lines.map((line) => (
+      <span class="line">
+        <span>{line}</span>
+      </span>
+    ))
+  }
+</Tag>

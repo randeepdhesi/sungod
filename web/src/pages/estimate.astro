@@ -1,0 +1,56 @@
+---
+import EstimateCalculator from '../components/calculator/EstimateCalculator.astro';
+import Container from '../components/ui/Container.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import TextTrio from '../components/ui/TextTrio.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const transparencyPoints = [
+  {
+    title: 'No hidden installation fees',
+    body: 'Our ballpark estimates factor in professional in-home measurement, bracket mounting, wiring/batteries, and setting travel limits.'
+  },
+  {
+    title: 'Exact fabric laser-measure',
+    body: 'During your in-home consultation, Brent measures to the 1/16th of an inch and brings real sample books so you see weave, texture, and light.'
+  },
+  {
+    title: 'Straightforward written quote',
+    body: 'You receive an itemized, clear proposal before any order is placed. No high-pressure sales tactics — just honest West Coast advice.'
+  }
+];
+---
+
+<BaseLayout
+  title="Interactive Pricing Estimator"
+  description="Calculate a transparent ballpark estimate for motorized roller shades, zebra shades, honeycomb shades, or Phantom screens in Metro Vancouver."
+>
+  <Section tone="lace" pad="md">
+    <Container>
+      <div class="max-w-[50ch]">
+        <p class="text-[13px] font-semibold tracking-[0.06em] text-mist uppercase">Instant Ballpark Pricing</p>
+        <h1 class="mt-3 text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[1.02]">
+          Window size &amp; pricing estimator.
+        </h1>
+        <p class="mt-5 text-[17px] text-mist">
+          Pick your window coverings, enter approximate dimensions, and see a transparent ballpark investment for your home before booking a visit.
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <EstimateCalculator />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="band" pad="md">
+    <Container>
+      <SectionHeading
+        title="Transparent pricing, zero surprises."
+        intro="How we quote and deliver motorized window coverings across the Lower Mainland."
+      />
+      <TextTrio items={transparencyPoints} class="mt-14" />
+    </Container>
+  </Section>
+</BaseLayout>

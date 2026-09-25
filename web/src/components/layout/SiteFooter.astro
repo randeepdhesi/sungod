@@ -1,0 +1,62 @@
+---
+import { products } from '../../data/products';
+import { site } from '../../data/site';
+import SiteWordmark from '../brand/SiteWordmark.astro';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer data-site-footer class="bg-graphite text-lace">
+  <Container class="border-b border-lace/25 py-16 md:py-24">
+    <div class="grid gap-9 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-20">
+      <div>
+        <p class="text-[13px] font-medium text-lace/75">Metro Vancouver · Sungod Blinds</p>
+        <h2 class="mt-6 max-w-[15ch] text-[clamp(2.75rem,5vw,5rem)] leading-[1.02] tracking-[-0.015em]">Let's talk about your windows.</h2>
+      </div>
+      <div class="lg:pb-2">
+        <p class="max-w-[37ch] text-[16px] leading-relaxed text-lace/80">Tell us about your space. We'll follow up to arrange a consultation, measure and written quote.</p>
+        <Button href="/quote" size="lg" class="mt-7">Request a consultation</Button>
+      </div>
+    </div>
+  </Container>
+
+  <Container class="grid gap-12 py-14 md:grid-cols-2 md:gap-x-16 lg:grid-cols-[1.25fr_1fr_1fr_1fr] lg:py-20">
+    <div>
+      <a href="/" aria-label="Sungod Blinds home" class="inline-flex min-h-11 items-center text-lace hover:text-paper"><SiteWordmark /></a>
+      <p class="mt-5 max-w-[26ch] text-[14px] leading-relaxed text-lace/75">Motorized blinds and shades, measured, installed and programmed for your home.</p>
+      <p class="mt-6 text-[13px] text-lace/70">{site.region}</p>
+    </div>
+
+    <nav aria-label="Footer products">
+      <h3 class="font-sans text-[13px] font-semibold text-lace">Motorized shades</h3>
+      <ul class="mt-4">
+        {products.map((product) => <li><a href={`/products/${product.slug}`} class="inline-flex min-h-11 items-center text-[14px] text-lace/75 hover:text-lace hover:underline hover:underline-offset-4">{product.shortName}</a></li>)}
+      </ul>
+    </nav>
+
+    <nav aria-label="Footer company">
+      <h3 class="font-sans text-[13px] font-semibold text-lace">More from Sungod</h3>
+      <ul class="mt-4">
+        <li><a href="/estimate" class="inline-flex min-h-11 items-center text-[14px] text-lace/75 hover:text-lace hover:underline hover:underline-offset-4">Pricing Estimator</a></li>
+        <li><a href="/phantom-screens" class="inline-flex min-h-11 items-center text-[14px] text-lace/75 hover:text-lace hover:underline hover:underline-offset-4">Phantom door screens</a></li>
+        <li><a href="/about" class="inline-flex min-h-11 items-center text-[14px] text-lace/75 hover:text-lace hover:underline hover:underline-offset-4">About Sungod</a></li>
+        <li><a href="/about#service-area" class="inline-flex min-h-11 items-center text-[14px] text-lace/75 hover:text-lace hover:underline hover:underline-offset-4">Where we work</a></li>
+        <li><a href="/brand" class="inline-flex min-h-11 items-center text-[14px] text-lace/50 hover:text-lace hover:underline hover:underline-offset-4">Brand Review (Draft)</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h3 class="font-sans text-[13px] font-semibold text-lace">Speak with Brent</h3>
+      <p class="mt-4 text-[14px] text-lace/75">{site.principal.name} · {site.principal.title}</p>
+      <a href={`tel:${site.phoneTel}`} class="mt-3 inline-flex min-h-11 items-center font-display text-[26px] text-lace hover:text-paper hover:underline hover:underline-offset-4">{site.phoneDisplay}</a>
+      <p class="mt-5 max-w-[23ch] text-[13px] leading-relaxed text-lace/70">Serving Vancouver, the North Shore and the Lower Mainland.</p>
+    </div>
+  </Container>
+
+  <Container class="flex flex-col gap-2 border-t border-lace/25 py-5 text-[12px] text-lace/65 sm:flex-row sm:justify-between">
+    <p>© {year} {site.name}. All rights reserved.</p>
+    <p>{site.domain} · {site.region}</p>
+  </Container>
+</footer>

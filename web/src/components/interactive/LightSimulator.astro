@@ -1,0 +1,141 @@
+---
+import { images } from '../../data/images';
+import StockImage from '../ui/StockImage.astro';
+
+interface Props {
+  class?: string;
+  title?: string;
+  intro?: string;
+}
+
+const {
+  class: cls,
+  title = 'See how fabric shapes your room light.',
+  intro = 'From soft glare filtering to complete room-darkening privacy. Select an opacity to preview the atmosphere.'
+} = Astro.props;
+---
+
+<div data-light-simulator class:list={['rounded-card border border-line bg-paper p-6 md:p-10', cls]}>
+  <div class="max-w-[46ch]">
+    <span class="text-[12px] font-semibold tracking-[0.08em] text-mist uppercase">Interactive Fabric Simulator</span>
+    <h3 class="mt-2 text-[clamp(1.75rem,3.5vw,2.5rem)] leading-tight text-graphite">{title}</h3>
+    <p class="mt-3 text-[15px] text-mist">{intro}</p>
+  </div>
+
+  <!-- Opacity Segmented Tabs -->
+  <div class="mt-8 flex flex-wrap gap-2 border-b border-line pb-6">
+    <button
+      type="button"
+      data-sim-tab="sheer"
+      aria-pressed="false"
+      class="rounded-btn border border-line bg-lace/40 px-4 py-2.5 text-[14px] font-medium text-mist transition hover:border-spice hover:text-graphite"
+    >
+      01 · Sheer / Solar
+    </button>
+    <button
+      type="button"
+      data-sim-tab="light-filtering"
+      aria-pressed="true"
+      class="rounded-btn border border-spice bg-paper px-4 py-2.5 text-[14px] font-medium text-graphite transition hover:border-spice"
+    >
+      02 · Light-Filtering
+    </button>
+    <button
+      type="button"
+      data-sim-tab="room-darkening"
+      aria-pressed="false"
+      class="rounded-btn border border-line bg-lace/40 px-4 py-2.5 text-[14px] font-medium text-mist transition hover:border-spice hover:text-graphite"
+    >
+      03 · Room-Darkening
+    </button>
+    <button
+      type="button"
+      data-sim-tab="blackout"
+      aria-pressed="false"
+      class="rounded-btn border border-line bg-lace/40 px-4 py-2.5 text-[14px] font-medium text-mist transition hover:border-spice hover:text-graphite"
+    >
+      04 · Total Blackout
+    </button>
+  </div>
+
+  <!-- Simulator Stage & Metrics -->
+  <div class="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+    <!-- Visual Room Window Pane -->
+    <div class="relative overflow-hidden rounded-card border border-line/80 bg-graphite shadow-sm">
+      <div data-sim-room class="relative transition-all duration-700 ease-out">
+        <StockImage
+          image={images.aboutHero}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          class="aspect-[4/3] w-full object-cover transition-all duration-700"
+        />
+      </div>
+
+      <!-- Simulated shade material overlay -->
+      <div
+        data-sim-shade
+        class="pointer-events-none absolute inset-0 bg-graphite mix-blend-multiply transition-opacity duration-700 ease-out"
+        style="opacity: 0.62;"
+      >
+      </div>
+
+      <!-- Simulated daylight glow -->
+      <div
+        data-sim-glow
+        class="pointer-events-none absolute inset-0 bg-radial from-honey/25 via-lace/15 to-transparent transition-opacity duration-700 ease-out"
+        style="opacity: 0.45;"
+      >
+      </div>
+
+      <!-- Badge in window -->
+      <div class="absolute bottom-4 left-4 rounded-input bg-graphite/85 px-3 py-1.5 backdrop-blur-xs">
+        <span data-sim-label class="font-display text-sm text-lace">Light-Filtering</span>
+      </div>
+    </div>
+
+    <!-- Active Details & Performance Metrics -->
+    <div class="space-y-6">
+      <div>
+        <p data-sim-desc class="text-[17px] leading-relaxed text-graphite font-medium">
+          Diffused daylight with complete daytime privacy.
+        </p>
+        <p class="mt-2 text-[13px] text-mist">
+          Brent brings full sample swatches to your home so you can hold fabrics directly against your window glass.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 border-t border-line/60 pt-6">
+        <div class="rounded-card border border-line bg-lace/40 p-4">
+          <span class="text-[11px] font-semibold tracking-[0.06em] text-mist uppercase">Light Transmission</span>
+          <p data-sim-vlt class="mt-1 font-display text-2xl text-graphite">8% – 12% VLT</p>
+        </div>
+        <div class="rounded-card border border-line bg-lace/40 p-4">
+          <span class="text-[11px] font-semibold tracking-[0.06em] text-mist uppercase">UV &amp; Heat Shield</span>
+          <p data-sim-uv class="mt-1 font-display text-2xl text-spice">98% UV Rejection</p>
+        </div>
+        <div class="rounded-card border border-line bg-lace/40 p-4">
+          <span class="text-[11px] font-semibold tracking-[0.06em] text-mist uppercase">Privacy Level</span>
+          <p data-sim-privacy class="mt-1 font-display text-xl text-graphite">100% Daytime</p>
+        </div>
+        <div class="rounded-card border border-line bg-lace/40 p-4">
+          <span class="text-[11px] font-semibold tracking-[0.06em] text-mist uppercase">Best Suited For</span>
+          <p data-sim-usage class="mt-1 text-[13px] font-medium leading-snug text-graphite">Dining &amp; street-facing</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between border-t border-line/60 pt-4">
+        <span class="text-[13px] text-mist">Want custom advice for your exposure?</span>
+        <a href="/quote" class="text-[14px] font-medium text-spice hover:underline hover:underline-offset-4">
+          Ask during consultation →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initLightSimulator } from '../../scripts/light-simulator';
+
+  document.querySelectorAll<HTMLElement>('[data-light-simulator]').forEach((el) => {
+    initLightSimulator(el);
+  });
+</script>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel' | 'number';
+  required?: boolean;
+  autocomplete?: string;
+  inputmode?: 'text' | 'email' | 'tel' | 'numeric';
+  placeholder?: string;
+  min?: number;
+  max?: number;
+  maxlength?: number;
+  class?: string;
+}
+
+const {
+  name,
+  label,
+  type = 'text',
+  required = false,
+  autocomplete,
+  inputmode,
+  placeholder,
+  min,
+  max,
+  maxlength,
+  class: cls
+} = Astro.props;
+const id = `field-${name}`;
+---
+
+<div class={cls}>
+  <label for={id} class="mb-2 block text-[13px] font-semibold tracking-[0.04em] text-graphite">
+    {label}{required && <span class="text-spice" aria-hidden="true"> *</span>}
+  </label>
+  <input
+    id={id}
+    name={name}
+    type={type}
+    required={required}
+    autocomplete={autocomplete}
+    inputmode={inputmode}
+    placeholder={placeholder}
+    min={min}
+    max={max}
+    maxlength={maxlength}
+    aria-describedby={`${id}-error`}
+    class="deboss-well h-12 w-full px-4 text-base text-graphite placeholder:text-mist/60 aria-invalid:border-spice"
+  />
+  <p id={`${id}-error`} data-error-for={name} class="mt-1.5 text-[13px] text-spice" hidden></p>
+</div>

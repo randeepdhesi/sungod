@@ -1,0 +1,89 @@
+---
+import type { Crumb, ImageAsset, LinkAction } from '../../data/types';
+import Button from './Button.astro';
+import Container from './Container.astro';
+import MaskedHeading from './MaskedHeading.astro';
+import StockImage from './StockImage.astro';
+
+interface Props {
+  lines: string[];
+  body: string;
+  image: ImageAsset;
+  tagline?: string;
+  cta?: LinkAction;
+  secondary?: LinkAction;
+  breadcrumb?: Crumb[];
+  tall?: boolean;
+}
+
+const { lines, body, image, tagline, cta, secondary, breadcrumb, tall = false } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-lace">
+  <Container
+    class:list={[
+      'relative grid items-center lg:grid-cols-[45fr_55fr]',
+      tall ? 'lg:min-h-[calc(92svh-5rem)]' : 'lg:min-h-[640px]'
+    ]}
+  >
+    <div class="relative z-10 py-14 md:py-20 lg:py-24 lg:pr-14">
+      {
+        breadcrumb && (
+          <nav aria-label="Breadcrumb" class="mb-10">
+            <ol class="flex flex-wrap items-center gap-2 text-[13px] text-mist">
+              {breadcrumb.map((c, i) => (
+                <li class="flex items-center gap-2">
+                  {i > 0 && (
+                    <span aria-hidden="true" class="h-px w-4 bg-line" />
+                  )}
+                  {c.href ? (
+                    <a href={c.href} class="hover:text-graphite">
+                      {c.label}
+                    </a>
+                  ) : (
+                    <span aria-current={i === breadcrumb.length - 1 ? 'page' : undefined}>{c.label}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+      <MaskedHeading lines={lines} class="text-display xl:-ml-8" />
+      {tagline && <p class="mt-7 font-display text-2xl text-graphite" data-reveal>{tagline}</p>}
+      <p class:list={['max-w-[36ch] text-lg leading-relaxed text-mist', tagline ? 'mt-4' : 'mt-8']} data-reveal>
+        {body}
+      </p>
+      {
+        (cta || secondary) && (
+          <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4" data-reveal data-reveal-delay="0.1">
+            {cta && (
+              <Button href={cta.href} size="lg">
+                {cta.label}
+              </Button>
+            )}
+            {secondary && (
+              <Button href={secondary.href} variant="link">
+                {secondary.label}
+              </Button>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </Container>
+  <div
+    class="relative aspect-[4/5] sm:aspect-[16/11] lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-auto lg:w-[55%]"
+    data-slide="right"
+  >
+    <StockImage
+      image={image}
+      sizes="(min-width: 1024px) 55vw, 100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <span aria-hidden="true" class="absolute inset-y-0 left-0 hidden w-px bg-honey/80 lg:block"></span>
+    <slot name="aside" />
+  </div>
+</section>

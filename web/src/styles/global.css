@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette: warm near-white pages, grey banding, one spice accent, honey sun */
+  --color-lace: #f7efde; /* page */
+  --color-band: #e5e2d9; /* alternate section band */
+  --color-paper: #ffffff; /* scrolled header, menus */
+  --color-well: #efe7d6; /* form input well */
+  --color-graphite: #303236; /* body text, dark cells */
+  --color-mist: #514c46; /* secondary text */
+  --color-line: #c8c4bc; /* hairlines, input borders */
+  --color-spice: #a94d25; /* CTA / links / focus (AA on lace) */
+  --color-spice-deep: #8f3e1b; /* CTA hover */
+  --color-honey: #d9a545; /* sun decoration only, never text */
+  --color-chestnut: #c57c37; /* quiet highlight wash */
+
+  --font-display: "Forum", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Raleway", ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(3.5rem, 8vw, 7.5rem);
+  --text-display--line-height: 0.95;
+  --text-h2: clamp(2.25rem, 4.5vw, 3.75rem);
+  --text-h2--line-height: 1.02;
+  --text-h3: 1.75rem;
+  --text-h3--line-height: 1.1;
+
+  --radius-card: 6px;
+  --radius-input: 4px;
+  --radius-btn: 2px;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --container-site: 1240px;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-lace);
+    color: var(--color-graphite);
+    -webkit-font-smoothing: antialiased;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-honey) 45%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-spice);
+    outline-offset: 3px;
+  }
+
+  /* Motion initial states: only applied when JS is available */
+  [data-line-mask] .line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+  }
+  [data-line-mask] .line > span {
+    display: inline-block;
+  }
+  .js [data-line-mask] .line > span {
+    transform: translateY(110%);
+  }
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  .js [data-slide] {
+    opacity: 0;
+  }
+}
+
+/* Herringbone Plaster Tile: grainy lace sheet laid over photography */
+@utility plaster-tile {
+  background-color: rgb(247 239 222 / 0.92);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .19 0 0 0 0 .19 0 0 0 0 .21 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  border-radius: 2px;
+}
+
+/* Matte Deboss Well: shallow recessed input pocket */
+@utility deboss-well {
+  background-color: var(--color-well);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-input);
+  box-shadow:
+    inset 0 1px 2px rgb(48 50 54 / 0.1),
+    inset 0 -1px 0 rgb(255 255 255 / 0.55);
+}
+
+/* Chamfered corners used by KeylineFrame (set --k for corner size) */
+@utility clip-corners {
+  clip-path: polygon(
+    var(--k, 12px) 0,
+    calc(100% - var(--k, 12px)) 0,
+    100% var(--k, 12px),
+    100% calc(100% - var(--k, 12px)),
+    calc(100% - var(--k, 12px)) 100%,
+    var(--k, 12px) 100%,
+    0 calc(100% - var(--k, 12px)),
+    0 var(--k, 12px)
+  );
+}

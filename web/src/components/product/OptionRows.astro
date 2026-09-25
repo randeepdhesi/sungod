@@ -1,0 +1,56 @@
+---
+import type { LightLevel, SectionTone } from '../../data/enums';
+import type { OptionRow } from '../../data/types';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Props {
+  title: string;
+  intro?: string;
+  rows: OptionRow[];
+  showLevel?: boolean;
+  tone?: SectionTone;
+  id?: string;
+}
+
+const { title, intro, rows, showLevel = false, tone = 'band', id } = Astro.props;
+
+const levelLabel: Record<LightLevel, string> = {
+  4: 'Most light',
+  3: 'Soft light',
+  2: 'Low light',
+  1: 'Darkest'
+};
+---
+
+<Section tone={tone} pad="md" id={id}>
+  <Container>
+    <SectionHeading title={title} intro={intro} />
+    <ul class="mt-14 border-b border-line">
+      {
+        rows.map((row, i) => (
+          <li
+            class:list={[
+              'grid gap-3 border-t border-line py-7 md:items-center md:gap-8',
+              showLevel ? 'md:grid-cols-[1fr_1.6fr_180px]' : 'md:grid-cols-[1fr_1.6fr]'
+            ]}
+            data-reveal
+            data-reveal-delay={String(i * 0.06)}
+          >
+            <h3 class="font-display text-[26px] leading-tight">{row.name}</h3>
+            <p class="max-w-[48ch] text-mist">{row.description}</p>
+            {showLevel && row.level && (
+              <div class="flex items-center gap-3">
+                <span aria-hidden="true" class="relative h-1 w-[120px] shrink-0 overflow-hidden rounded-full bg-line">
+                  <span class="absolute inset-y-0 left-0 rounded-full bg-honey" style={`width:${row.level * 25}%`} />
+                </span>
+                <span class="whitespace-nowrap text-[13px] text-mist">{levelLabel[row.level]}</span>
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</Section>

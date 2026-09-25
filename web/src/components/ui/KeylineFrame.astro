@@ -1,0 +1,36 @@
+---
+import type { SectionTone } from '../../data/enums';
+
+interface Props {
+  fill?: SectionTone | 'paper';
+  /** Chamfer size in px */
+  corner?: number;
+  class?: string;
+  innerClass?: string;
+  as?: 'div' | 'figure' | 'article';
+  'data-reveal'?: boolean | string;
+  'data-reveal-delay'?: string;
+}
+
+const { fill = 'lace', corner = 12, class: cls, innerClass, as: Tag = 'div', ...rest } = Astro.props;
+
+const fillClass: Record<NonNullable<Props['fill']>, string> = {
+  lace: 'bg-lace',
+  band: 'bg-band',
+  paper: 'bg-paper',
+  graphite: 'bg-graphite text-lace'
+};
+const strokeClass = fill === 'graphite' ? 'bg-honey/55' : 'bg-line';
+// Inset chamfers shrink by ~0.41px per px of inset so the doubled stroke stays even on the diagonals.
+const k = (inset: number) => `--k:${Math.max(corner - inset * 0.41, 0)}px`;
+---
+
+<Tag class:list={['clip-corners p-px', strokeClass, cls]} style={k(0)} {...rest}>
+  <div class:list={['clip-corners h-full p-[3px]', fillClass[fill]]} style={k(1)}>
+    <div class:list={['clip-corners h-full p-px', strokeClass]} style={k(4)}>
+      <div class:list={['clip-corners h-full p-6 md:p-8', fillClass[fill], innerClass]} style={k(5)}>
+        <slot />
+      </div>
+    </div>
+  </div>
+</Tag>

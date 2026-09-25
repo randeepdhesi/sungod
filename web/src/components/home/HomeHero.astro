@@ -1,0 +1,37 @@
+---
+import { images } from '../../data/images';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+import StockImage from '../ui/StockImage.astro';
+---
+
+<section class="bg-lace">
+  <Container size="wide" class="grid gap-10 border-b border-line pb-12 pt-10 md:gap-14 md:pb-16 md:pt-16 lg:min-h-[680px] lg:grid-cols-[42fr_58fr] lg:items-center lg:gap-16 lg:py-14">
+    <div class="lg:py-12">
+      <p class="mb-8 text-[13px] font-medium text-mist">Metro Vancouver · Motorized window coverings</p>
+      <h1 class="max-w-[11ch] text-[clamp(3.25rem,6vw,6rem)] leading-[0.98] tracking-[-0.025em]">
+        Shades that move with your day.
+      </h1>
+      <p class="mt-8 max-w-[38ch] text-[18px] leading-[1.6] text-mist">
+        Motorized blinds and shades, measured, installed and programmed for your home. Set the light once, then let it work around you.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+        <Button href="/quote" size="lg">Request a consultation</Button>
+        <Button href="/estimate" variant="ghost" size="lg">Price Estimator</Button>
+      </div>
+    </div>
+    <figure class="min-w-0">
+      <StockImage
+        image={images.rollerTile}
+        sizes="(min-width: 1024px) 52vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="aspect-[5/4] w-full object-cover sm:aspect-[3/2] lg:aspect-[5/4]"
+      />
+      <figcaption class="flex items-start justify-between gap-6 border-b border-line py-4 text-[13px] leading-snug text-mist">
+        <span>Roller shades · one of three motorized collections</span>
+        <span class="shrink-0">01 / 03</span>
+      </figcaption>
+    </figure>
+  </Container>
+</section>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  name: string;
+  label: string;
+  placeholder?: string;
+  rows?: number;
+  class?: string;
+}
+
+const { name, label, placeholder, rows = 4, class: cls } = Astro.props;
+const id = `field-${name}`;
+---
+
+<div class={cls}>
+  <label for={id} class="mb-2 block text-[13px] font-semibold tracking-[0.04em] text-graphite">{label}</label>
+  <textarea
+    id={id}
+    name={name}
+    rows={rows}
+    placeholder={placeholder}
+    class="deboss-well min-h-32 w-full resize-y px-4 py-3 text-base text-graphite placeholder:text-mist/60"
+  ></textarea>
+</div>

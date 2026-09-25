@@ -1,0 +1,22 @@
+---
+import type { LogoTone, LogoVariant } from '../../data/enums';
+import type { LogoConcept } from '../../data/types';
+import LogoHorizon from './LogoHorizon.astro';
+import LogoRadiant from './LogoRadiant.astro';
+import LogoSlatted from './LogoSlatted.astro';
+
+interface Props {
+  concept: LogoConcept;
+  variant?: LogoVariant;
+  tone?: LogoTone;
+  size?: number;
+  class?: string;
+}
+
+const { concept, variant = 'full', tone = 'light', size = 20, class: cls } = Astro.props;
+
+const components = { horizon: LogoHorizon, slatted: LogoSlatted, radiant: LogoRadiant };
+const Component = components[concept.component];
+---
+
+<Component variant={variant} tone={tone} size={size} class={cls} />

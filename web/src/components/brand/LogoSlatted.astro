@@ -1,0 +1,65 @@
+---
+import type { LogoTone, LogoVariant } from '../../data/enums';
+
+interface Props {
+  variant?: LogoVariant;
+  tone?: LogoTone;
+  size?: number;
+  class?: string;
+  title?: string;
+}
+
+const {
+  variant = 'full',
+  tone = 'light',
+  size = 20,
+  class: cls,
+  title = 'Sungod Blinds logo concept B: Slatted Sun'
+} = Astro.props;
+
+const uid = `slat-${Math.random().toString(36).slice(2, 8)}`;
+// Lower-half slats: gaps widen as they fall, like blinds tilting open.
+const slats = [
+  { y: 33.5, h: 5 },
+  { y: 40.5, h: 4.5 },
+  { y: 47.5, h: 4 },
+  { y: 54.5, h: 3.5 }
+];
+
+const ink = tone === 'dark' ? 'var(--color-lace)' : 'var(--color-graphite)';
+const markH = variant === 'full' ? size * 3.4 : variant === 'compact' ? size * 1.6 : size;
+const gap = variant === 'compact' ? size * 0.6 : size * 1;
+const wordSize = variant === 'full' ? size * 1.35 : size * 0.95;
+---
+
+<div
+  role="img"
+  aria-label={title}
+  class:list={['inline-flex', variant === 'full' ? 'flex-col items-center' : 'items-center', cls]}
+  style={`color:${ink};gap:${gap}px`}
+>
+  <svg viewBox="0 0 64 64" width={markH} height={markH} aria-hidden="true" focusable="false">
+    <defs>
+      <mask id={uid} maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+        <rect x="0" y="0" width="64" height="32" fill="#fff"></rect>
+        {slats.map((s) => <rect x="0" y={s.y} width="64" height={s.h} fill="#fff" />)}
+      </mask>
+    </defs>
+    <circle cx="32" cy="32" r="30.5" fill="none" stroke="var(--color-honey)" stroke-width="1" opacity="0.45"
+    ></circle>
+    <circle cx="32" cy="32" r="26" fill="var(--color-honey)" mask={`url(#${uid})`}></circle>
+  </svg>
+  {
+    variant !== 'mark' && (
+      <span aria-hidden="true" class="flex items-center font-sans leading-none" style={`font-size:${wordSize}px`}>
+        <span class="font-light" style="letter-spacing:0.42em">
+          SUNGOD
+        </span>
+        <span class="mx-[0.5em] h-[0.95em] w-px bg-current opacity-40" />
+        <span class="font-semibold" style="letter-spacing:0.3em">
+          BLINDS
+        </span>
+      </span>
+    )
+  }
+</div>

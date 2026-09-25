@@ -1,0 +1,22 @@
+---
+import { phantom } from '../../data/phantom';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import StockImage from '../ui/StockImage.astro';
+---
+
+<Section tone="lace" pad="none" class="py-20 md:py-32">
+  <Container class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-24">
+    <figure class="min-w-0">
+      <StockImage image={phantom.portraitImage} sizes="(min-width: 1024px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover md:aspect-[3/2] lg:aspect-[4/3]" />
+      <figcaption class="border-b border-line py-4 text-[13px] text-mist">Retractable door screens · a second way to live with the outdoors</figcaption>
+    </figure>
+    <div>
+      <p class="text-[13px] font-medium text-mist">Also from Sungod · Phantom screens</p>
+      <h2 class="mt-6 max-w-[14ch] text-[clamp(2.5rem,4.5vw,4.25rem)] leading-[1.03]">Fresh air, without a permanent screen door.</h2>
+      <p class="mt-7 max-w-[44ch] text-mist">{phantom.featureBody} We measure and fit them for your opening.</p>
+      <Button href="/phantom-screens" variant="link" class="mt-8">See retractable screens</Button>
+    </div>
+  </Container>
+</Section>

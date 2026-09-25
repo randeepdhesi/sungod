@@ -1,0 +1,36 @@
+---
+import type { ImageAsset } from '../../data/types';
+
+interface Props {
+  image: ImageAsset;
+  sizes: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'auto';
+  class?: string;
+  widths?: number[];
+}
+
+const {
+  image,
+  sizes,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: cls,
+  widths = [640, 1024, 1600, 2200]
+} = Astro.props;
+
+const srcset = widths.map((w) => `${image.srcFor(w)} ${w}w`).join(', ');
+---
+
+<img
+  src={image.srcFor(1600)}
+  srcset={srcset}
+  sizes={sizes}
+  width={image.width}
+  height={image.height}
+  alt={image.alt}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  decoding="async"
+  class={cls}
+/>

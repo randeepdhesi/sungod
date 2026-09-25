@@ -1,0 +1,62 @@
+---
+import type { SectionTone } from '../../data/enums';
+import type { LogoConcept } from '../../data/types';
+import Container from '../ui/Container.astro';
+import KeylineFrame from '../ui/KeylineFrame.astro';
+import Section from '../ui/Section.astro';
+import Logo from './Logo.astro';
+
+interface Props {
+  concept: LogoConcept;
+  tone?: SectionTone;
+}
+
+const { concept, tone = 'lace' } = Astro.props;
+const frameFill = tone === 'lace' ? 'paper' : 'lace';
+const headingId = `concept-${concept.id.toLowerCase()}`;
+---
+
+<Section tone={tone} pad="md" aria-labelledby={headingId}>
+  <Container>
+    <div class="grid gap-6 md:grid-cols-[auto_1fr] md:items-end md:gap-12" data-reveal>
+      <span class="font-display text-[96px] leading-[0.8] text-graphite/15" aria-hidden="true">{concept.id}</span>
+      <div>
+        <h2 id={headingId} class="text-h2">
+          <span class="sr-only">Concept {concept.id}: </span>{concept.name}
+        </h2>
+        <p class="mt-4 max-w-[60ch] text-mist">{concept.rationale}</p>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <KeylineFrame fill={frameFill} innerClass="relative flex min-h-[320px] items-center justify-center" data-reveal>
+        <Logo concept={concept} size={20} />
+        <p class="absolute bottom-5 left-5 text-[12px] text-mist">Primary lockup · light</p>
+      </KeylineFrame>
+
+      <KeylineFrame fill="graphite" innerClass="relative flex min-h-[320px] items-center justify-center" data-reveal data-reveal-delay="0.06">
+        <Logo concept={concept} tone="dark" size={20} />
+        <p class="absolute bottom-5 left-5 text-[12px] text-lace/75">Primary lockup · dark</p>
+      </KeylineFrame>
+
+      <KeylineFrame fill={frameFill} innerClass="relative flex min-h-[260px] items-center justify-center gap-10" data-reveal data-reveal-delay="0.1">
+        <Logo concept={concept} variant="mark" size={96} />
+        <Logo concept={concept} variant="mark" size={48} />
+        <Logo concept={concept} variant="mark" size={24} />
+        <p class="absolute bottom-5 left-5 text-[12px] text-mist">Mark · 96 / 48 / 24 px</p>
+      </KeylineFrame>
+
+      <KeylineFrame fill={frameFill} innerClass="relative flex min-h-[260px] flex-col justify-center" data-reveal data-reveal-delay="0.14">
+        <div class="flex h-16 items-center justify-between rounded-input border border-line bg-paper px-5" aria-hidden="true">
+          <Logo concept={concept} variant="compact" size={18} />
+          <span class="hidden items-center gap-5 sm:flex">
+            <span class="h-1.5 w-12 rounded-full bg-line"></span>
+            <span class="h-1.5 w-10 rounded-full bg-line"></span>
+            <span class="h-7 w-20 rounded-btn bg-spice"></span>
+          </span>
+        </div>
+        <p class="absolute bottom-5 left-5 text-[12px] text-mist">Compact lockup · in the header</p>
+      </KeylineFrame>
+    </div>
+  </Container>
+</Section>

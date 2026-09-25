@@ -1,0 +1,91 @@
+---
+import ApproachSection from '../components/home/ApproachSection.astro';
+import Button from '../components/ui/Button.astro';
+import Container from '../components/ui/Container.astro';
+import KeylineFrame from '../components/ui/KeylineFrame.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import SplitHero from '../components/ui/SplitHero.astro';
+import StockImage from '../components/ui/StockImage.astro';
+import { images } from '../data/images';
+import { site } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const process = [
+  {
+    title: 'Consult',
+    body: 'We visit your home, look at every window in its own light and talk through how you want each room to feel.'
+  },
+  {
+    title: 'Measure & specify',
+    body: 'Precise measurements, fabric samples and a motor and control plan, all in one clear written quote.'
+  },
+  {
+    title: 'Install & program',
+    body: 'We install, set limits, group rooms and build your schedules, then show you how everything works.'
+  }
+];
+---
+
+<BaseLayout title="About" description="Sungod Blinds is a Lower Mainland company focused entirely on motorized blinds and shades, plus Phantom retractable screens.">
+  <SplitHero
+    lines={['Built for', 'the West Coast.']}
+    body="A Lower Mainland company focused on one thing: motorized window coverings, specified, installed and programmed properly."
+    image={images.aboutHero}
+    cta={{ label: 'Book a Consultation', href: '/quote' }}
+    secondary={{ label: 'Where we work', href: '#service-area' }}
+  />
+
+  <Section tone="band" pad="lg">
+    <Container class="grid gap-14 md:grid-cols-2 md:items-center lg:gap-24">
+      <figure data-reveal>
+        <blockquote class="font-display text-[clamp(2rem,4vw,3.25rem)] leading-[1.08]">
+          “Light is the product. Automation is how we deliver it.”
+        </blockquote>
+        <figcaption class="mt-6 text-[14px] text-mist">{site.principal.name}, {site.principal.title}</figcaption>
+      </figure>
+      <div class="grid gap-8 sm:grid-cols-[1fr_180px] sm:items-end">
+        <div class="space-y-5 text-mist" data-reveal data-reveal-delay="0.08">
+          <p>
+            Sungod started with a simple idea: the best window covering is the one you never have to think about.
+            Shades that rise with the morning, drop when the afternoon sun hits the glass and close on their own at dusk.
+          </p>
+          <p>
+            We only do motorized. That focus means we plan the power, the controls and the programming properly, and we
+            stay with you after install to fine-tune schedules as the seasons change.
+          </p>
+        </div>
+        <div data-slide="right">
+          <StockImage image={images.aboutStory} sizes="180px" widths={[360, 540]} class="aspect-[3/4] w-full rounded-card object-cover" />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <ApproachSection tone="lace" title="How we work." intro="Three steps from first call to fully automated home." items={process} showInset={false} />
+
+  <Section tone="band" pad="md" id="service-area">
+    <Container>
+      <SectionHeading title="Serving the Lower Mainland" intro="From the North Shore to the Fraser Valley. Don't see your city? Ask us." />
+      <ul class="mt-12 grid grid-cols-2 border-t border-line md:grid-cols-3 lg:grid-cols-4">
+        {site.serviceAreas.map((city) => <li class="border-b border-line py-4 font-display text-[22px]">{city}</li>)}
+      </ul>
+    </Container>
+  </Section>
+
+  <Section tone="lace" pad="md">
+    <Container>
+      <KeylineFrame fill="band" innerClass="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:p-12" data-reveal>
+        <div>
+          <p class="text-[13px] font-medium text-mist">Talk to the principal</p>
+          <h2 class="mt-3 text-h2">{site.principal.name}</h2>
+          <p class="mt-2 text-mist">{site.principal.title}, {site.name}</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-6">
+          <a href={`tel:${site.phoneTel}`} class="text-lg font-medium hover:text-spice">C {site.phoneDisplay}</a>
+          <Button href="/quote" size="lg">Get a Quote</Button>
+        </div>
+      </KeylineFrame>
+    </Container>
+  </Section>
+</BaseLayout>

@@ -1,0 +1,87 @@
+---
+import type { HeadingLevel, SectionTone } from '../../data/enums';
+import { phantom } from '../../data/phantom';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+import KeylineFrame from '../ui/KeylineFrame.astro';
+import Section from '../ui/Section.astro';
+import StockImage from '../ui/StockImage.astro';
+
+interface Props {
+  tone?: SectionTone;
+  showCta?: boolean;
+  extended?: boolean;
+  headingLevel?: HeadingLevel;
+  eyebrow?: string;
+}
+
+const {
+  tone = 'band',
+  showCta = true,
+  extended = false,
+  headingLevel: Heading = 'h2',
+  eyebrow = 'Also from Sungod'
+} = Astro.props;
+---
+
+<Section tone={tone} pad="lg" class="relative overflow-hidden">
+  <Container class="relative">
+    <div class="grid items-center gap-12 lg:grid-cols-[1fr_240px_1.1fr] lg:gap-10">
+      <div data-reveal>
+        <p class="text-[13px] font-medium text-mist">{eyebrow}</p>
+        <Heading class="mt-5 max-w-[12ch] text-h2">Seamless Indoor-Outdoor Living.</Heading>
+        <p class="mt-6 font-display text-2xl text-graphite">Phantom Retractable Screens.</p>
+        <p class="mt-5 max-w-[42ch] text-mist">{phantom.featureBody}</p>
+        {extended && phantom.extendedBody.map((p) => <p class="mt-4 max-w-[42ch] text-mist">{p}</p>)}
+        {
+          showCta && (
+            <Button href="/phantom-screens" variant="link" class="mt-8">
+              Explore Phantom Screens
+            </Button>
+          )
+        }
+      </div>
+
+      <KeylineFrame fill={tone === 'band' ? 'lace' : 'band'} class="self-center" data-reveal data-reveal-delay="0.1">
+        <p class="text-[13px] font-semibold text-graphite">At a glance</p>
+        <ul class="mt-4 space-y-3 text-[15px] leading-snug text-mist">
+          {
+            phantom.specs.map((s) => (
+              <li class="flex gap-3">
+                <span aria-hidden="true" class="mt-[0.65em] h-px w-3 shrink-0 bg-spice" />
+                {s}
+              </li>
+            ))
+          }
+        </ul>
+      </KeylineFrame>
+
+      <div class="relative" data-slide="right">
+        <StockImage
+          image={phantom.portraitImage}
+          sizes="(min-width: 1024px) 40vw, 100vw"
+          class="aspect-[3/4] w-full rounded-card object-cover"
+        />
+      </div>
+    </div>
+
+    <!-- Honey horizon line that draws itself on scroll -->
+    <svg
+      aria-hidden="true"
+      class="pointer-events-none absolute -bottom-14 left-6 right-6 h-[2px] w-[calc(100%-3rem)] md:left-10 md:w-[calc(100%-5rem)]"
+      viewBox="0 0 1000 2"
+      preserveAspectRatio="none"
+    >
+      <path
+        data-draw
+        d="M0 1 H1000"
+        fill="none"
+        stroke="var(--color-honey)"
+        stroke-width="1.5"
+        vector-effect="non-scaling-stroke"
+        pathLength="1"
+        stroke-dasharray="1"
+        stroke-dashoffset="1"></path>
+    </svg>
+  </Container>
+</Section>

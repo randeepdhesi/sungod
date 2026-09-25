@@ -1,0 +1,63 @@
+---
+import type { SectionTone } from '../../data/enums';
+import { images } from '../../data/images';
+import type { Benefit } from '../../data/types';
+import Container from '../ui/Container.astro';
+import PlasterTile from '../ui/PlasterTile.astro';
+import Section from '../ui/Section.astro';
+import StockImage from '../ui/StockImage.astro';
+import TextTrio from '../ui/TextTrio.astro';
+
+interface Props {
+  title?: string;
+  intro?: string;
+  items?: Benefit[];
+  tone?: SectionTone;
+  showInset?: boolean;
+}
+
+const defaultItems: Benefit[] = [
+  {
+    title: 'Automation-first',
+    body: 'Every shade we install is motorized. We plan power, placement and controls from the first visit, so the system works on day one.'
+  },
+  {
+    title: 'Local expertise',
+    body: 'Lower Mainland based. We know West Coast light, high-rise glass and the rain-to-sun swings of a Vancouver day.'
+  },
+  {
+    title: 'Premium materials',
+    body: 'Quality motors, hardware and fabrics, chosen to look calm, run quietly and hold up for years.'
+  }
+];
+
+const {
+  title = 'Built for the West Coast.',
+  intro = 'Sungod Blinds does one thing: motorized window coverings, specified, installed and programmed properly.',
+  items = defaultItems,
+  tone = 'band',
+  showInset = true
+} = Astro.props;
+---
+
+<Section tone={tone} pad="lg" class="relative">
+  <Container class="relative">
+    <div class="grid gap-8 md:grid-cols-[1fr_1fr] md:items-end">
+      <h2 class="max-w-[14ch] text-h2" data-reveal>{title}</h2>
+      <p class="max-w-[44ch] text-mist md:justify-self-end" data-reveal data-reveal-delay="0.08">{intro}</p>
+    </div>
+    <TextTrio items={items} class="mt-16 md:mt-20" />
+  </Container>
+  {
+    showInset && (
+      <PlasterTile class="absolute bottom-0 right-6 z-10 hidden w-[220px] translate-y-1/2 p-2! md:block lg:right-16">
+        <StockImage
+          image={images.fabricInset}
+          sizes="220px"
+          widths={[440, 660]}
+          class="aspect-square w-full object-cover"
+        />
+      </PlasterTile>
+    )
+  }
+</Section>

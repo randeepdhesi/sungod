@@ -1,0 +1,23 @@
+---
+import type { Product } from '../../data/types';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import ProductTile from './ProductTile.astro';
+
+interface Props {
+  products: Product[];
+  title?: string;
+}
+
+const { products, title = 'You may also like' } = Astro.props;
+---
+
+<Section tone="band" pad="md" id="related">
+  <Container>
+    <SectionHeading title={title} />
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      {products.map((p, i) => <ProductTile product={p} class="aspect-[4/3]" revealDelay={i * 0.08} />)}
+    </div>
+  </Container>
+</Section>

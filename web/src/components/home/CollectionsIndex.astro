@@ -1,0 +1,52 @@
+---
+import { products } from '../../data/products';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
+import Section from '../ui/Section.astro';
+import StockImage from '../ui/StockImage.astro';
+---
+
+<Section tone="lace" pad="none" id="collections" class="pb-20 pt-20 md:pb-28 md:pt-28">
+  <Container>
+    <div class="grid gap-5 md:grid-cols-[1fr_1fr] md:items-end md:gap-10">
+      <h2 class="max-w-[14ch] text-[clamp(2.5rem,4.5vw,4.25rem)] leading-[1.03]">Find the right shade for the room.</h2>
+      <p class="max-w-[44ch] text-mist md:justify-self-end">
+        Different windows ask for different things. Every collection here is motorized; the difference is how you want to live with the light.
+      </p>
+    </div>
+
+    <ol class="mt-12 border-t border-line md:mt-16">
+      {
+        products.map((product, index) => (
+          <li class="border-b border-line">
+            <a
+              href={`/products/${product.slug}`}
+              class="group grid min-h-[168px] grid-cols-[1fr_112px] items-center gap-5 py-6 transition-colors hover:bg-band/40 focus-visible:bg-band/40 sm:grid-cols-[50px_1fr_160px] sm:gap-7 md:min-h-[196px] md:grid-cols-[70px_minmax(0,1fr)_210px] md:gap-10 md:py-8"
+            >
+              <span class="hidden self-start pt-1 text-[13px] tabular-nums text-mist sm:block">{String(index + 1).padStart(2, '0')}</span>
+              <div class="min-w-0">
+                <h3 class="text-[clamp(1.7rem,3vw,2.75rem)] leading-[1.05]">{product.shortName}</h3>
+                <p class="mt-3 max-w-[50ch] text-[14px] leading-relaxed text-mist md:text-[16px]">{product.homeDescription}</p>
+                <span class="mt-4 inline-flex min-h-11 items-center gap-2 text-[14px] font-medium text-spice underline decoration-spice/40 underline-offset-4 group-hover:decoration-spice">
+                  View {product.shortName.toLowerCase()}
+                  <Icon name="arrow-right-light" size={18} class="text-spice transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+              <StockImage
+                image={product.tileImage}
+                sizes="(min-width: 768px) 210px, 160px"
+                widths={[320, 440, 660]}
+                class="aspect-[4/5] w-full object-cover sm:aspect-[4/3]"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="mt-10 flex flex-wrap items-center justify-between gap-4 text-mist">
+      <p>Not sure which shade fits your room?</p>
+      <Button href="/quote" variant="link">Talk through your windows with us</Button>
+    </div>
+  </Container>
+</Section>

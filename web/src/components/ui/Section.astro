@@ -1,0 +1,32 @@
+---
+import type { SectionPad, SectionTone } from '../../data/enums';
+
+interface Props {
+  tone?: SectionTone;
+  pad?: SectionPad;
+  id?: string;
+  class?: string;
+  as?: 'section' | 'div' | 'aside';
+  'aria-labelledby'?: string;
+}
+
+const { tone = 'lace', pad = 'md', id, class: cls, as: Tag = 'section', ...rest } = Astro.props;
+
+const toneClass: Record<SectionTone, string> = {
+  lace: 'bg-lace text-graphite',
+  band: 'bg-band text-graphite',
+  graphite: 'bg-graphite text-lace'
+};
+
+// Padding varies per section on purpose; hierarchy over symmetry.
+const padClass: Record<SectionPad, string> = {
+  none: '',
+  sm: 'py-16 md:py-20',
+  md: 'py-20 md:py-28',
+  lg: 'py-24 md:py-36'
+};
+---
+
+<Tag id={id} class:list={[toneClass[tone], padClass[pad], cls]} {...rest}>
+  <slot />
+</Tag>

@@ -1,0 +1,28 @@
+---
+import type { HeadingLevel } from '../../data/enums';
+
+interface Props {
+  title: string;
+  intro?: string;
+  as?: HeadingLevel;
+  id?: string;
+  class?: string;
+}
+
+const { title, intro, as: Tag = 'h2', id, class: cls } = Astro.props;
+const hasActions = Astro.slots.has('default');
+---
+
+<div class:list={['flex flex-col gap-6 md:flex-row md:items-end md:justify-between', cls]}>
+  <div class="max-w-2xl" data-reveal>
+    <Tag id={id} class="text-h2">{title}</Tag>
+    {intro && <p class="mt-5 max-w-[52ch] text-mist">{intro}</p>}
+  </div>
+  {
+    hasActions && (
+      <div class="shrink-0" data-reveal data-reveal-delay="0.1">
+        <slot />
+      </div>
+    )
+  }
+</div>

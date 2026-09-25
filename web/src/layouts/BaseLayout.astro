@@ -1,0 +1,82 @@
+---
+import '@fontsource/forum';
+import '@fontsource/raleway/300.css';
+import '@fontsource/raleway/400.css';
+import '@fontsource/raleway/500.css';
+import '@fontsource/raleway/600.css';
+import '../styles/global.css';
+
+import SiteFooter from '../components/layout/SiteFooter.astro';
+import SiteHeader from '../components/layout/SiteHeader.astro';
+import { images } from '../data/images';
+import { site } from '../data/site';
+import { pageTitle } from '../lib/format';
+
+interface Props {
+  title?: string;
+  description: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const { title, description, ogImage = images.homeHero.srcFor(1200), noindex = false } = Astro.props;
+
+const fullTitle = pageTitle(title);
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: site.name,
+  url: site.url,
+  telephone: '+1-604-720-5471',
+  description: 'Motorized blinds, shades and Phantom retractable screens for Vancouver and the Lower Mainland.',
+  areaServed: site.serviceAreas.map((name) => ({ '@type': 'City', name })),
+  address: { '@type': 'PostalAddress', addressRegion: 'BC', addressCountry: 'CA' },
+  employee: { '@type': 'Person', name: site.principal.name, jobTitle: site.principal.title }
+};
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#F7EFDE" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_CA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="min-h-screen bg-lace font-sans text-graphite antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-btn focus:bg-graphite focus:px-4 focus:py-2 focus:text-lace"
+    >
+      Skip to content
+    </a>
+    <SiteHeader />
+    <main id="main" class="pt-20">
+      <slot />
+    </main>
+    <SiteFooter />
+    <script>
+      import '../scripts/motion';
+      import '../scripts/nav';
+    </script>
+  </body>
+</html>

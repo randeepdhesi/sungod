@@ -1,0 +1,31 @@
+---
+import { icons as ph } from '@iconify-json/ph';
+
+interface Props {
+  /** Phosphor icon name without prefix, e.g. "sun-light" */
+  name: string;
+  size?: number;
+  class?: string;
+  /** Provide only when the icon is meaningful on its own */
+  label?: string;
+}
+
+const { name, size = 20, class: cls, label } = Astro.props;
+const icon = ph.icons[name];
+if (!icon) throw new Error(`Unknown Phosphor icon: ${name}`);
+const box = `0 0 ${icon.width ?? ph.width ?? 256} ${icon.height ?? ph.height ?? 256}`;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={box}
+  width={size}
+  height={size}
+  class={cls}
+  fill="currentColor"
+  focusable="false"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+  set:html={icon.body}
+/>

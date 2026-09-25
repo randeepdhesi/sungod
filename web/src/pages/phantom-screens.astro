@@ -1,0 +1,39 @@
+---
+import PhantomFeature from '../components/home/PhantomFeature.astro';
+import OptionRows from '../components/product/OptionRows.astro';
+import QuoteCta from '../components/product/QuoteCta.astro';
+import Container from '../components/ui/Container.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import SplitHero from '../components/ui/SplitHero.astro';
+import TextTrio from '../components/ui/TextTrio.astro';
+import { phantom, phantomBenefits, phantomTypes } from '../data/phantom';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const quoteHref = '/quote?product=phantom-door-screens';
+---
+
+<BaseLayout title="Phantom Retractable Screens" description={phantom.seoDescription} ogImage={phantom.heroImage.srcFor(1200)}>
+  <SplitHero
+    lines={phantom.titleLines}
+    tagline={phantom.tagline}
+    body={phantom.summary}
+    image={phantom.heroImage}
+    breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Phantom Screens' }]}
+    cta={{ label: 'Get a Quote', href: quoteHref }}
+    secondary={{ label: 'See screen types', href: '#types' }}
+  />
+
+  <PhantomFeature showCta={false} extended eyebrow="Supplied and installed by Sungod Blinds" />
+
+  <Section tone="lace" pad="md">
+    <Container>
+      <SectionHeading title="Why a retractable screen" intro="All the benefits of a screen door, none of the permanent frame in your view." />
+      <TextTrio items={phantomBenefits} class="mt-14" />
+    </Container>
+  </Section>
+
+  <OptionRows id="types" title="Screens for every opening." rows={phantomTypes} />
+
+  <QuoteCta href={quoteHref} title="Ready for fresh air?" body="We measure your doors, recommend the right screen and mesh, and install it alongside your shades." />
+</BaseLayout>

@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  name: string;
+  label: string;
+  options: { value: string; label: string }[];
+  placeholder?: string;
+  required?: boolean;
+  class?: string;
+}
+
+const { name, label, options, placeholder = 'Select an option', required = false, class: cls } = Astro.props;
+const id = `field-${name}`;
+---
+
+<div class={cls}>
+  <label for={id} class="mb-2 block text-[13px] font-semibold tracking-[0.04em] text-graphite">
+    {label}{required && <span class="text-spice" aria-hidden="true"> *</span>}
+  </label>
+  <div class="relative">
+    <select
+      id={id}
+      name={name}
+      required={required}
+      aria-describedby={`${id}-error`}
+      class="deboss-well h-12 w-full appearance-none px-4 pr-11 text-base text-graphite aria-invalid:border-spice"
+    >
+      <option value="">{placeholder}</option>
+      {options.map((o) => <option value={o.value}>{o.label}</option>)}
+    </select>
+    <Icon
+      name="caret-down-light"
+      size={18}
+      class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-mist"
+    />
+  </div>
+  <p id={`${id}-error`} data-error-for={name} class="mt-1.5 text-[13px] text-spice" hidden></p>
+</div>
